@@ -1,103 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Activities.MainActivity"
     android:orientation="vertical">
 
+    <!--fragment들이 나오는 화면-->
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation_view">
+    </FrameLayout>
 
-    <LinearLayout
+    <!--바텀 네비게이션 뷰-->
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <!--앱 타이틀-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="내알">
-        </TextView>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="30dp">
-
-        <EditText
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:hint="상품을 검색해주세요."
-            android:layout_marginLeft="40dp"/>
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_search_black_24"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp">
-
-        <Button
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:text="바코드로 검색"
-            android:textSize="20dp"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="오늘의 인기글 재경아아아아"
-                android:textSize="25dp"
-                android:layout_marginLeft="40dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <!--바텀 네비게이션 뷰-->
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#008374"
-            app:itemIconTint="@drawable/color_state"
-            app:itemTextColor="@drawable/color_state"
-            android:layout_alignParentBottom="true"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/navigation">
-        </android.support.design.widget.BottomNavigationView>
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+        android:background="#008374"
+        app:itemIconTint="@drawable/color_state"
+        app:itemTextColor="@drawable/color_state"
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigation">
+    </android.support.design.widget.BottomNavigationView>
+</RelativeLayout>
