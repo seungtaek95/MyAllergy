@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <!--fragment들이 나오는 화면-->
+
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
