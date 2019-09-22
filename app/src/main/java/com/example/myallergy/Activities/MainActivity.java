@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
             //프래그먼트 매니저
             fm = getSupportFragmentManager();
 
-            //fragment 4개
-            fragHome = new FragHome();
-
             //시작할 때 홈화면 띄우기
+            fragHome = new FragHome();
             fm.beginTransaction().replace(R.id.main_frame, fragHome).commit();
         }
     }

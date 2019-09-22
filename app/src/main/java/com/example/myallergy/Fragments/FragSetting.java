@@ -33,13 +33,15 @@ public class FragSetting extends Fragment {
         //로그아웃 버튼
         btnLogout = (Button)view.findViewById(R.id.btn_logout);
 
-        //로그아웃 실행
+        //로그아웃 버튼 클릭, 알림창 팝업
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("로그아웃");
                 builder.setMessage("로그아웃 하시겠습니까?");
+
+                //예 클릭
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -48,12 +50,14 @@ public class FragSetting extends Fragment {
                                         OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
                                         mOAuthLogin.logoutAndDeleteToken(getContext());
 
+                                        //로그아웃하면 로그인 activity 실행
                                         Intent intent = new Intent(getActivity(), NaverLoginActivity.class);
-                                        startActivity(intent); //로그인 activity 실행
+                                        startActivity(intent);
                                     }
                                 }.start();
                             }
                         });
+                //아니오 클릭
                 builder.setNegativeButton("아니오",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -63,11 +67,5 @@ public class FragSetting extends Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("###################", "destroyed TTTTTTTTTT");
     }
 }
