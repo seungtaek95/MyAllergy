@@ -32,27 +32,30 @@ public class MainActivity extends AppCompatActivity {
         String token = mOAuthLogin.getAccessToken(getApplicationContext());
 
         if(token == null) { //로그인 안된 상태라면
-            Log.d("@@@@@@@@@@@@@@@@@@@@@@@", "Not loged in");
             Intent intent = new Intent(this, NaverLoginActivity.class);
             startActivity(intent); //로그인 activity 실행
+            createHomeScreen(); //홈 화면 생성
         }
         else { //로그인이 되어있다면
-            Log.d("@@@@@@@@@@@@@@@@@@@@@@@", "Loged in");
-            //네비게이션 바 생성
-            bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
-            bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
-            //네비게이션 바 고정
-            bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-
-            //프래그먼트 매니저
-            fm = getSupportFragmentManager();
-
-            //시작할 때 홈화면 띄우기
-            fragHome = new FragHome();
-            fm.beginTransaction().replace(R.id.main_frame, fragHome).commit();
+            createHomeScreen(); //홈 화면 생성
         }
     }
 
+    //홈화면, 네비게이션 바 생성
+    private void createHomeScreen () {
+        //네비게이션 바 생성
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
+        //네비게이션 바 고정
+        bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+
+        //프래그먼트 매니저
+        fm = getSupportFragmentManager();
+
+        //시작할 때 홈화면 띄우기
+        fragHome = new FragHome();
+        fm.beginTransaction().replace(R.id.main_frame, fragHome).commit();
+    }
     //BottomNavigationView의 항목들이 선택됐을 때, Fragment를 변경
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
