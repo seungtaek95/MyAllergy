@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myallergy.Activities.MainActivity;
 import com.example.myallergy.Activities.NaverLoginActivity;
 import com.example.myallergy.R;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -52,6 +53,10 @@ public class FragSetting extends Fragment {
 
                                         //로그아웃하면 로그인 activity 실행
                                         Intent intent = new Intent(getActivity(), NaverLoginActivity.class);
+                                        startActivity(intent);
+                                        //actiity 초기화
+                                        getActivity().finish();
+                                        intent = new Intent(getActivity(), MainActivity.class);
                                         startActivity(intent);
                                     }
                                 }.start();
