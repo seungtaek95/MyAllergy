@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/post_foodImage"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:src="@drawable/ic_search_black_24"/>
+
+        <TextView
+            android:id="@+id/post_titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/post_foodImage"
+            android:text="제목"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:id="@+id/post_writerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/post_titleText"
+            android:layout_toRightOf="@id/post_foodImage"
+            android:text="작성자"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/post_postText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/post_writerText"
+            android:layout_toRightOf="@id/post_foodImage"
+            android:text="포스팅내용"
+            android:textSize="12dp"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
