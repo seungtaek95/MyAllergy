@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
     <!--fragment들이 나오는 화면-->
 
@@ -22,7 +23,7 @@
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#008374"
+        android:background="@color/design_default_color_primary"
         app:itemIconTint="@drawable/color_state"
         app:itemTextColor="@drawable/color_state"
         android:layout_alignParentBottom="true"

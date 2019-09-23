@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:padding="20dp"
+        android:background="@color/design_default_color_primary">
         <!--앱 타이틀-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
-            android:text="내알"/>
+            android:text="내알"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,6 +37,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="#aaaaff"
             android:src="@drawable/ic_search_black_24"/>
     </LinearLayout>
 
@@ -47,6 +50,7 @@
         <Button
             android:layout_width="260dp"
             android:layout_height="50dp"
+            android:background="#aaaaff"
             android:text="바코드로 검색"
             android:textSize="20dp"/>
     </LinearLayout>
