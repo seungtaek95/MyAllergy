@@ -48,11 +48,12 @@
         android:layout_marginTop="10dp">
 
         <Button
+            android:id="@+id/barcode_btn"
             android:layout_width="260dp"
             android:layout_height="50dp"
             android:background="#aaaaff"
             android:text="바코드로 검색"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
