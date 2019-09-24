@@ -1,4 +1,4 @@
-package com.example.myallergy.Barcode;
+package com.example.myallergy.Activities;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -12,12 +12,11 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 
 // 스캔 화면
-public class CustomScannerActivity extends Activity implements DecoratedBarcodeView.TorchListener{
+public class BarcodeScannerActivity extends Activity implements DecoratedBarcodeView.TorchListener{
 
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
-    private BackPressCloseHandler backPressCloseHandler;
-    private ImageButton setting_btn,switchFlashlightButton;
+    private ImageButton switchFlashlightButton;
     private Boolean switchFlashlightButtonCheck;
 
     @Override
@@ -26,10 +25,7 @@ public class CustomScannerActivity extends Activity implements DecoratedBarcodeV
         setContentView(R.layout.activity_custom_scanner);
         //플래쉬 버튼
         switchFlashlightButtonCheck = true;
-        //두번 뒤로가면 종료
-        backPressCloseHandler = new BackPressCloseHandler(this);
 
-        setting_btn = (ImageButton)findViewById(R.id.setting_btn);
         switchFlashlightButton = (ImageButton)findViewById(R.id.switch_flashlight);
 
         //카메라에 플래쉬 기능이 있으면 ON
@@ -67,10 +63,6 @@ public class CustomScannerActivity extends Activity implements DecoratedBarcodeV
         super.onSaveInstanceState(outState);
         capture.onSaveInstanceState(outState);
     }
-    //뒤로가기 두번 누를시 종료
-    public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
-    }
 
     //플래쉬 버튼
     public void switchFlashlight(View view) {
@@ -91,7 +83,6 @@ public class CustomScannerActivity extends Activity implements DecoratedBarcodeV
         switchFlashlightButton.setImageResource(R.drawable.ic_flash_on_white_36dp);
         switchFlashlightButtonCheck = false;
     }
-
     @Override
     public void onTorchOff() {
         switchFlashlightButton.setImageResource(R.drawable.ic_flash_off_white_36dp);
