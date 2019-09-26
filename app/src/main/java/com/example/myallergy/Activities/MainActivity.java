@@ -17,6 +17,9 @@ import com.example.myallergy.R;
 import com.nhn.android.naverlogin.OAuthLogin;
 
 public class MainActivity extends AppCompatActivity {
+    OAuthLogin mOAuthLogin;
+    String token;
+
     BottomNavigationView bottomNavigationView;
     Fragment fragHome, fragMedicine, fragCommunity, fragSetting;
     FragmentManager fm;
@@ -25,18 +28,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createHomeScreen();
 
         //네이버 로그인 사용자 인스턴스 가져오기
-        OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
-        String token = mOAuthLogin.getAccessToken(getApplicationContext());
+        mOAuthLogin = OAuthLogin.getInstance();
+        token = mOAuthLogin.getAccessToken(getApplicationContext());
 
         if(token == null) { //로그인 안된 상태라면
             Intent intent = new Intent(this, NaverLoginActivity.class);
             startActivity(intent); //로그인 activity 실행
-            createHomeScreen(); //홈 화면 생성
-        }
-        else { //로그인이 되어있다면
-            createHomeScreen(); //홈 화면 생성
         }
     }
 
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         fragHome = new FragHome();
         fm.beginTransaction().replace(R.id.main_frame, fragHome).commit();
     }
+
     //BottomNavigationView의 항목들이 선택됐을 때, Fragment를 변경
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

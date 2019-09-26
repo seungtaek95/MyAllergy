@@ -1,6 +1,8 @@
 package com.example.myallergy.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.myallergy.R;
@@ -34,7 +36,18 @@ public class NaverLoginActivity extends AppCompatActivity {
         String token = mOAuthLogin.getAccessToken(getApplicationContext());
 
         if(token != null) { //로그인 된 상태라면
+            Intent intent = new Intent(this, AllergySelectActivity.class);
+            startActivity(intent);//알러지 선택 activity 실행
             finish();
         }
+    }
+
+    //뒤로가기 누르면 종료
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        ActivityCompat.finishAffinity(this);
+//        System.runFinalization();
+//        System.exit(0);
     }
 }

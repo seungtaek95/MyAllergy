@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.NaverLoginActivity" />
-        <activity android:name=".Activities.BarcodeScannerActivity"></activity>
+        <activity android:name=".Activities.BarcodeScannerActivity"/>
+        <activity android:name=".Activities.AllergySelectActivity"/>
     </application>
 
 </manifest>

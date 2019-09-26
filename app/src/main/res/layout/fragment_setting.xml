@@ -16,19 +16,17 @@
         android:layout_marginBottom="10dp"/>
 
     <LinearLayout
+        android:id="@+id/btn_setting_allergy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_margin="10dp">
-
         <TextView
-            android:id="@+id/allergy_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="내 알러지 설정"
             android:textSize="30dp"/>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,25 +34,25 @@
             android:gravity="right"
             android:text=">"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
         android:background="#aaaaaa"/>
+
     <LinearLayout
+        android:id="@+id/btn_setting_medicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_margin="10dp">
-
         <TextView
-            android:id="@+id/medicine_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="내 복용약 설정"
             android:textSize="30dp"/>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +60,7 @@
             android:gravity="right"
             android:text=">"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
