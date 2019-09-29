@@ -46,7 +46,7 @@ public class NaverLoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        ActivityCompat.finishAffinity(this);
+        finishAffinity();
 //        System.runFinalization();
 //        System.exit(0);
     }

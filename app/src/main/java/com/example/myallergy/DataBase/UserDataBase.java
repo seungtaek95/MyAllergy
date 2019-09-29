@@ -6,7 +6,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(version = 1, entities = {User.class})
+@Database(version = 1, entities = {User.class}, exportSchema = false)
 public abstract class UserDataBase extends RoomDatabase {
     private static UserDataBase INSTANCE;
     private static final Object sLock = new Object();
