@@ -22,13 +22,18 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="40dp"
                 android:hint="약을 검색해주세요." />
-            <ImageButton
-                android:id="@+id/medicine_btn_search"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_search_black_24"
-                android:imeOptions="actionSearch"
-                android:background="#aaaaff"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#7080cc">
+                <ImageButton
+                    android:id="@+id/medicine_btn_search"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_search_black_24"
+                    android:imeOptions="actionSearch"
+                    android:background="?selectableItemBackground"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
