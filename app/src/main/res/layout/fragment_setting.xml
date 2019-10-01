@@ -12,61 +12,77 @@
         android:text="설정"
         android:textSize="40dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:id="@+id/btn_setting_allergy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:clickable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="내 알러지 설정"
+                android:textSize="30dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="right"
+                android:text=">"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+
+            android:background="#aaaaaa"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/allergy_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="내 알러지 설정"
-            android:textSize="30dp"/>
-
-        <TextView
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        android:background="?selectableItemBackground"
+        android:clickable="true">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:gravity="right"
-            android:text=">"/>
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#aaaaaa"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/medicine_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="내 복용약 설정"
-            android:textSize="30dp"/>
-
-        <TextView
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="내 복용약 설정"
+                android:textSize="30dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="right"
+                android:text=">"/>
+        </LinearLayout>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:gravity="right"
-            android:text=">"/>
+            android:layout_height="2dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="#aaaaaa"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#aaaaaa"/>
 
     <Button
         android:layout_width="wrap_content"
