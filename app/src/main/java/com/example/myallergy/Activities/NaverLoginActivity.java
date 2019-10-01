@@ -1,3 +1,5 @@
+/*
+
 package com.example.myallergy.Activities;
 
 import android.os.Bundle;
@@ -38,3 +40,4 @@ public class NaverLoginActivity extends AppCompatActivity {
         }
     }
 }
+*/

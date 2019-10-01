@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.myallergy.Fragments.FragCommunity;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //네이버 로그인 사용자 인스턴스 가져오기
-        OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
+        /*OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
         String token = mOAuthLogin.getAccessToken(getApplicationContext());
 
         if(token == null) { //로그인 안된 상태라면
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else { //로그인이 되어있다면
             createHomeScreen(); //홈 화면 생성
-        }
+        }*/
     }
 
     //홈화면, 네비게이션 바 생성
@@ -65,45 +64,48 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     if(fragHome == null) {
                         fragHome = new FragHome();
-                        fm.beginTransaction().add(R.id.main_frame, fragHome).commit();
+                        addFragment(fragHome);
                     }
-                    if(fragHome != null) fm.beginTransaction().show(fragHome).commit();
-                    if(fragMedicine != null) fm.beginTransaction().hide(fragMedicine).commit();
-                    if(fragCommunity != null) fm.beginTransaction().hide(fragCommunity).commit();
-                    if(fragSetting != null) fm.beginTransaction().hide(fragSetting).commit();
+                    showFragment(fragHome);
+                    hideFragment(fragMedicine, fragCommunity, fragSetting);
                     return true;
                 case R.id.navigation_medicine:
                     if(fragMedicine == null) {
                         fragMedicine = new FragMedicine();
-                        fm.beginTransaction().add(R.id.main_frame, fragMedicine).commit();
+                        addFragment(fragMedicine);
                     }
-                    if(fragHome != null) fm.beginTransaction().hide(fragHome).commit();
-                    if(fragMedicine != null) fm.beginTransaction().show(fragMedicine).commit();
-                    if(fragCommunity != null) fm.beginTransaction().hide(fragCommunity).commit();
-                    if(fragSetting != null) fm.beginTransaction().hide(fragSetting).commit();
+                    showFragment(fragMedicine);
+                    hideFragment(fragHome, fragCommunity, fragSetting);
                     return true;
                 case R.id.navigation_community:
                     if(fragCommunity == null) {
                         fragCommunity = new FragCommunity();
-                        fm.beginTransaction().add(R.id.main_frame, fragCommunity).commit();
+                        addFragment(fragCommunity);
                     }
-                    if(fragHome != null) fm.beginTransaction().hide(fragHome).commit();
-                    if(fragMedicine != null) fm.beginTransaction().hide(fragMedicine).commit();
-                    if(fragCommunity != null) fm.beginTransaction().show(fragCommunity).commit();
-                    if(fragSetting != null) fm.beginTransaction().hide(fragSetting).commit();
+                    showFragment(fragCommunity);
+                    hideFragment(fragHome, fragMedicine, fragSetting);
                     return true;
                 case R.id.navigation_setting:
                     if(fragSetting == null) {
                         fragSetting = new FragSetting();
-                        fm.beginTransaction().add(R.id.main_frame, fragSetting).commit();
+                        addFragment(fragSetting);
                     }
-                    if(fragHome != null) fm.beginTransaction().hide(fragHome).commit();
-                    if(fragMedicine != null) fm.beginTransaction().hide(fragMedicine).commit();
-                    if(fragCommunity != null) fm.beginTransaction().hide(fragCommunity).commit();
-                    if(fragSetting != null) fm.beginTransaction().show(fragSetting).commit();
+                    showFragment(fragSetting);
+                    hideFragment(fragHome, fragMedicine, fragCommunity);
                     return true;
             }
             return false;
         }
     };
+    public void addFragment(Fragment frag) {
+        fm.beginTransaction().add(R.id.main_frame, frag).commit();
+    }
+    public void showFragment(Fragment frag) {
+        if(frag != null) fm.beginTransaction().show(frag).commit();
+    }
+    public void hideFragment(Fragment... frag) {
+        for(Fragment tempFrag : frag) {
+            if (tempFrag != null) fm.beginTransaction().hide(tempFrag).commit();
+        }
+    }
 }

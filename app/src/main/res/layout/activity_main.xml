@@ -23,11 +23,10 @@
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/design_default_color_primary"
         app:itemIconTint="@drawable/color_state"
         app:itemTextColor="@drawable/color_state"
-        android:layout_alignParentBottom="true"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation">
-    </android.support.design.widget.BottomNavigationView>
+        app:menu="@menu/navigation"></android.support.design.widget.BottomNavigationView>
 </RelativeLayout>
