@@ -49,12 +49,11 @@ public class FragHome extends Fragment {
         Log.d("onActivityResult", "onActivityResult: .");
         if (resultCode == Activity.RESULT_OK) {
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-            String re = scanResult.getContents();
-            String message = re;
-            Log.d("onActivityResult", "onActivityResult: ." + re);
+            String result = scanResult.getContents();
+            Log.d("onActivityResult", "onActivityResult: ." + result);
 
             //바코드 번호 Taost 메세지
-            Toast.makeText(getActivity(), re, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
         }
     }
 }

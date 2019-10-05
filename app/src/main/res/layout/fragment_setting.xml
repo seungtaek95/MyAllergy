@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:layout_marginLeft="10dp"
                 android:text="내 알러지 설정"
                 android:textSize="30dp"/>
             <TextView
@@ -46,11 +47,11 @@
             android:layout_height="2dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-
             android:background="#aaaaaa"/>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/btn_setting_medicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -67,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:layout_marginLeft="10dp"
                 android:text="내 복용약 설정"
                 android:textSize="30dp"/>
             <TextView
@@ -90,5 +92,7 @@
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:id="@+id/btn_logout"
-        android:text="로그아웃하기"/>
+        android:background="@color/design_default_color_primary_dark"
+        android:text="로그아웃하기"
+        android:textColor="#ffffff"/>
 </LinearLayout>

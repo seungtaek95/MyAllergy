@@ -8,7 +8,7 @@ public class MedicineVO implements Serializable {
 	private String validate;
 	private String capacity;
 	private String company;
-	private String pname;
+	private String mname;
 	private String ingredient;
 	
 	public String getCategory() {
@@ -41,11 +41,11 @@ public class MedicineVO implements Serializable {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	public String getPname() {
-		return pname;
+	public String getMname() {
+		return mname;
 	}
-	public void setPname(String pname) {
-		this.pname = pname;
+	public void setMname(String pname) {
+		this.mname = pname;
 	}
 	public String getIngredient() {
 		return ingredient;
