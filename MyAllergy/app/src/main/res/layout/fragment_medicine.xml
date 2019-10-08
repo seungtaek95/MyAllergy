@@ -1,0 +1,51 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_medicine_result"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center">
+            <EditText
+                android:id="@+id/medicine_editText"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="40dp"
+                android:hint="약을 검색해주세요." />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#7080cc">
+
+                <ImageButton
+                    android:id="@+id/medicine_btn_search"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="#FF8184"
+                    android:imeOptions="actionSearch"
+                    android:src="@drawable/ic_search_black_24" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/medicine_layout_search_result"
+            android:layout_gravity="center">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
