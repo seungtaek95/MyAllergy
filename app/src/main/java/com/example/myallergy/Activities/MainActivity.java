@@ -31,26 +31,21 @@ public class MainActivity extends AppCompatActivity {
         createHomeScreen();
 
         //네이버 로그인 사용자 인스턴스 가져오기
-<<<<<<< HEAD
-        /*OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
+        OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
         String token = mOAuthLogin.getAccessToken(getApplicationContext());
-=======
+
         mOAuthLogin = OAuthLogin.getInstance();
         token = mOAuthLogin.getAccessToken(getApplicationContext());
->>>>>>> upstream/master
 
         if(token == null) { //로그인 안된 상태라면
             Intent intent = new Intent(this, NaverLoginActivity.class);
             startActivity(intent); //로그인 activity 실행
-<<<<<<< HEAD
             createHomeScreen(); //홈 화면 생성
         }
         else { //로그인이 되어있다면
             createHomeScreen(); //홈 화면 생성
-        }*/
-=======
         }
->>>>>>> upstream/master
+
     }
 
     //홈화면, 네비게이션 바 생성

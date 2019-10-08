@@ -1,4 +1,3 @@
-/*
 
 package com.example.myallergy.Activities;
 
@@ -53,4 +52,4 @@ public class NaverLoginActivity extends AppCompatActivity {
 //        System.exit(0);
     }
 }
-*/
+
