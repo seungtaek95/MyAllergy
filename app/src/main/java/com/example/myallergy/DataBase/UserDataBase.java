@@ -6,7 +6,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(version = 1, entities = {User.class}, exportSchema = false)
+@Database(version = 1, entities = {Medicine.class, Allergy.class}, exportSchema = false)
 public abstract class UserDataBase extends RoomDatabase {
     private static UserDataBase INSTANCE;
     private static final Object sLock = new Object();
@@ -15,13 +15,13 @@ public abstract class UserDataBase extends RoomDatabase {
     public static UserDataBase getInstance(Context context) {
         synchronized (sLock) {
             if(INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context.getApplicationContext(), UserDataBase.class, "allergy")
-                        .allowMainThreadQueries()
+                INSTANCE = Room.databaseBuilder(context.getApplicationContext(), UserDataBase.class, "user")
                         .build();
             }
             return INSTANCE;
         }
     }
 
-    public abstract UserDAO getUserDAO();
+    public abstract MedicineDAO getMedicineDAO();
+    public abstract AllergyDAO getAllergyDAO();
 }

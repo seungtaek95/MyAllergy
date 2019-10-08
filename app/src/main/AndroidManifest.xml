@@ -24,6 +24,7 @@
         <activity android:name=".Activities.BarcodeScannerActivity"/>
         <activity android:name=".Activities.AllergySelectActivity"/>
         <activity android:name=".Activities.MedicineInfoActivity"/>
+        <activity android:name=".Activities.MyMedicineActivity"/>
     </application>
     <!--인터넷 사용-->
     <uses-permission android:name="android.permission.INTERNET" />

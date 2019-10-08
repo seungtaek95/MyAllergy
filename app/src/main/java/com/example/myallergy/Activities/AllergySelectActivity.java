@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.example.myallergy.DataBase.User;
-import com.example.myallergy.DataBase.UserDAO;
+import com.example.myallergy.DataBase.Allergy;
+import com.example.myallergy.DataBase.AllergyDAO;
 import com.example.myallergy.DataBase.UserDataBase;
 import com.example.myallergy.R;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class AllergySelectActivity extends AppCompatActivity {
     final int ALLERGY_COUNT = 22;
     UserDataBase db;
-    UserDAO userDAO;
+    AllergyDAO allergyDAO;
 
     List<CheckBox> checkBoxList;
     Button btnSubmit;
@@ -27,33 +27,28 @@ public class AllergySelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allergy_check);
 
-        //checkbox, button 생성
-        createCheckBoxes();
+        //checkbox, button 초기화
+        initializeCheckBoxes();
         btnSubmit = (Button)findViewById(R.id.allergy_submit);
 
-        //database, dao 생성
+        //database, dao 초기화
         db = UserDataBase.getInstance(getApplicationContext());
-        userDAO = db.getUserDAO();
+        allergyDAO = db.getAllergyDAO();
 
-        //설정된 알러지 정보가 있으면 체크박스 체크 설정
-        if(userDAO.getUser() != null) {
-            for(int i = 0; i < userDAO.getUser().size(); i++) {
-                setCheckBoxStatus(userDAO.getUser().get(i));
-            }
-        }
+        //이전에 설정된 알러지 정보가 있으면 체크박스 체크 설정
+        isAllergyTableExist();
 
         //설정완료 클릭 시 알러지 정보 insert
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userDAO.deleteUser();
                 insertAllergy();
                 finish();
             }
         });
     }
 
-    public void createCheckBoxes () {
+    public void initializeCheckBoxes () {
         //ceckbox를 담을 lsit
         checkBoxList = new ArrayList<>();
 
@@ -65,11 +60,24 @@ public class AllergySelectActivity extends AppCompatActivity {
         }
     }
 
-    //checkbox 체크 여부 설정
-    public void setCheckBoxStatus (User user) {
+    //알러지 정보 테이블이 존재하는지
+    public void isAllergyTableExist () {
+        new Thread() {
+            public void run() {
+                //존재한다면 기존 알러지 정보를 checkbox에 체크
+                if(allergyDAO.getAllergyList() != null) {
+                    for(int i = 0; i < allergyDAO.getAllergyList().size(); i++) {
+                        setCheckBoxStatus(allergyDAO.getAllergyList().get(i));
+                    }
+                }
+            }
+        }.start();
+    }
+
+    //기존 알러지 정보 checkbox에 체크
+    public void setCheckBoxStatus (final Allergy allergy) {
         for(int i = 0; i < ALLERGY_COUNT; i++) {
-            //이미 저장된 사용자 알러지정보와 일치하면 체크됨으로 설정
-            if(getCheckedAllergyId(i) == user.getAllergyId()) {
+            if(getCheckedAllergyId(i) == allergy.getAllergyId()) {
                 checkBoxList.get(i).setChecked(true);
             }
         }
@@ -87,13 +95,20 @@ public class AllergySelectActivity extends AppCompatActivity {
 
     //체크된 알러지 정보를 db에 저장
     public void insertAllergy () {
-        for(int i = 0; i < ALLERGY_COUNT; i++) {
-            if(checkBoxList.get(i).isChecked()) {
-                User tempUser = new User();
-                tempUser.setAllergy(getCheckedAllergy(i));
-                tempUser.setAllergyId(getCheckedAllergyId(i));
-                userDAO.insert(tempUser);
+        new Thread() {
+            public void run() {
+                //기존 데이터 삭제
+                allergyDAO.deleteAllergy();
+
+                for(int i = 0; i < ALLERGY_COUNT; i++) {
+                    if(checkBoxList.get(i).isChecked()) {
+                        Allergy tempAllergy= new Allergy();
+                        tempAllergy.setAllergyName(getCheckedAllergy(i));
+                        tempAllergy.setAllergyId(getCheckedAllergyId(i));
+                        allergyDAO.insert(tempAllergy);
+                    }
+                }
             }
-        }
+        }.start();
     }
 }
