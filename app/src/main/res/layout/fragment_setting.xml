@@ -92,7 +92,7 @@
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:id="@+id/btn_logout"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="@color/colorAccent"
         android:text="로그아웃하기"
         android:textColor="#ffffff"/>
 </LinearLayout>

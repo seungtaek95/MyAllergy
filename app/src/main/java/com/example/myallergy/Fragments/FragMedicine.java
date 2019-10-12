@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.MedicineVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -87,8 +90,12 @@ public class FragMedicine extends Fragment {
             public void onResponse(Call<List<MedicineVO>> call, Response<List<MedicineVO>> response) {
                 List<MedicineVO> list = response.body();
                 //검색결과 레이아웃 생성
-                for(int i = 0; i < list.size(); i++) {
-                    createSearchResult(list.get(i));
+                if(list.size() == 0)
+                    createNothingFoundResult();
+                else {
+                    for(int i = 0; i < list.size(); i++) {
+                        createSearchResult(list.get(i));
+                    }
                 }
             }
             @Override
@@ -117,6 +124,14 @@ public class FragMedicine extends Fragment {
             }
         });
         //레이아웃에 추가
+        layout.addView(resultText);
+    }
+
+    public void createNothingFoundResult () {
+        TextView resultText = new TextView(getContext());
+        resultText.setGravity(Gravity.CENTER);
+        resultText.setText("검색 결과가 없습니다");
+        resultText.setTextSize(30);
         layout.addView(resultText);
     }
 

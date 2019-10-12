@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="홈"/>
+        android:title="홈" />
     <item
         android:id="@+id/navigation_medicine"
         android:icon="@drawable/ic_local_pharmacy_black_24dp"
