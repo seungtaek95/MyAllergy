@@ -47,7 +47,7 @@ public class FragSetting extends Fragment {
             }
         });
 
-        //내 알러지 설정 버튼 클릭, 알러지 선택 activity 실행
+        //내 복용약 설정 버튼 클릭, 복용약 activity 실행
         btnSetMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,11 +75,8 @@ public class FragSetting extends Fragment {
                                     }
                                 }.start();
 
-                                //actiity 초기화
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
-                                getActivity().overridePendingTransition(0, 0);
+                                //actiity 다시시작
+                                resetActivity();
                             }
                         });
                 //아니오 클릭
@@ -97,11 +94,11 @@ public class FragSetting extends Fragment {
 
     public void initializeViews(View view) {
         //내 알러지 설정 버튼
-        btnSetAllergy = (LinearLayout)view.findViewById(R.id.btn_setting_allergy);
+        btnSetAllergy = view.findViewById(R.id.btn_setting_allergy);
         //내 복용약 설정 버튼
-        btnSetMedicine = (LinearLayout)view.findViewById(R.id.btn_setting_medicine);
+        btnSetMedicine = view.findViewById(R.id.btn_setting_medicine);
         //로그아웃 버튼
-        btnLogout = (Button)view.findViewById(R.id.btn_logout);
+        btnLogout = view.findViewById(R.id.btn_logout);
     }
 
     public void deleteUserInfo() {
@@ -113,5 +110,12 @@ public class FragSetting extends Fragment {
         UserDataBase db = UserDataBase.getInstance(getContext());
         AllergyDAO userDAO = db.getAllergyDAO();
         userDAO.deleteAllergy();
+    }
+
+    public void resetActivity() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+        getActivity().overridePendingTransition(0, 0);
     }
 }

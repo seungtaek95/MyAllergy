@@ -3,6 +3,7 @@ package com.example.myallergy.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myallergy.Activities.AlarmActivity;
 import com.example.myallergy.DataBase.Medicine;
 import com.example.myallergy.DataBase.MedicineDAO;
 import com.example.myallergy.DataBase.UserDataBase;
@@ -55,15 +57,25 @@ public class MyMedicineAdapter extends BaseAdapter {
         initializeViews(convertView);
 
         //약 이름으로 textview 설정
-        String medicineName = medicineList.get(position).getMedicineName();
+        final String medicineName = medicineList.get(position).getMedicineName();
         textView.setText(medicineName);
 
-        //삭제 버튼 클릭 시
+        //삭제 버튼
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertDialogHandler(context, position);
                 notifyDataSetChanged();
+            }
+        });
+
+        //알람 설정 버튼
+        btnAlarm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent2 = new Intent(v.getContext(), AlarmActivity.class);
+                intent2.putExtra("medicineName",medicineName);
+                v.getContext().startActivity(intent2);
             }
         });
         return convertView;

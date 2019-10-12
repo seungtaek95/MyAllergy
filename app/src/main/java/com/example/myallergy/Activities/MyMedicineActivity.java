@@ -30,7 +30,7 @@ public class MyMedicineActivity extends AppCompatActivity {
 
         //리스트뷰에 어댑터 설정
         medicineAdapter = new MyMedicineAdapter();
-        listView = (ListView)findViewById(R.id.my_medicine_list);
+        listView = findViewById(R.id.my_medicine_list);
         listView.setAdapter(medicineAdapter);
 
         //db에서 내 복용약 정보를 가져와서 어댑터에 추가

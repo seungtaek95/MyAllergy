@@ -29,7 +29,7 @@ public class AllergySelectActivity extends AppCompatActivity {
 
         //checkbox, button 초기화
         initializeCheckBoxes();
-        btnSubmit = (Button)findViewById(R.id.allergy_submit);
+        btnSubmit = findViewById(R.id.allergy_submit);
 
         //database, dao 초기화
         db = UserDataBase.getInstance(getApplicationContext());
@@ -55,7 +55,7 @@ public class AllergySelectActivity extends AppCompatActivity {
         //checkbox 22개 생성 후 리스트에 add
         for (int i = 0; i < ALLERGY_COUNT; i++) {
             int resId = getResources().getIdentifier("check" + (i + 1), "id", getPackageName());
-            CheckBox tempCB = (CheckBox)findViewById(resId);
+            CheckBox tempCB = findViewById(resId);
             checkBoxList.add(tempCB);
         }
     }

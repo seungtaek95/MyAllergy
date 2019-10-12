@@ -3,7 +3,6 @@ package com.example.myallergy.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.myallergy.R;
@@ -25,7 +24,7 @@ public class NaverLoginActivity extends AppCompatActivity {
         mOAuthLoginModule = OAuthLogin.getInstance();
         mOAuthLoginModule.init(this, "32ZtKDUrZ5z_TFOSBnzY", "zVKwrsfsvc", "clientName");
         //네이버로 로그인 실행
-        mOAuthLoginButton=(OAuthLoginButton)findViewById(R.id.button_naverlogin);
+        mOAuthLoginButton=findViewById(R.id.button_naverlogin);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
     }
 
@@ -46,10 +45,7 @@ public class NaverLoginActivity extends AppCompatActivity {
     //뒤로가기 누르면 종료
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
         finishAffinity();
-//        System.runFinalization();
-//        System.exit(0);
     }
 }
 

@@ -49,14 +49,14 @@ public class MedicineInfoActivity extends AppCompatActivity {
     }
 
     public void initializeView() {
-        mname = (TextView)findViewById(R.id.medicine_name);
-        company = (TextView)findViewById(R.id.medicine_company);
-        effect = (TextView)findViewById(R.id.medicine_effect);
-        capacity = (TextView)findViewById(R.id.medicine_capacity);
-        ingredient = (TextView)findViewById(R.id.medicine_ingredient);
-        category = (TextView)findViewById(R.id.medicine_category);
-        validate = (TextView)findViewById(R.id.medicine_validate);
-        btnAdd = (Button)findViewById(R.id.medicine_add_my);
+        mname = findViewById(R.id.medicine_name);
+        company = findViewById(R.id.medicine_company);
+        effect = findViewById(R.id.medicine_effect);
+        capacity = findViewById(R.id.medicine_capacity);
+        ingredient = findViewById(R.id.medicine_ingredient);
+        category = findViewById(R.id.medicine_category);
+        validate = findViewById(R.id.medicine_validate);
+        btnAdd = findViewById(R.id.medicine_add_my);
 
         //database, dao 초기화
         db = UserDataBase.getInstance(getApplicationContext());

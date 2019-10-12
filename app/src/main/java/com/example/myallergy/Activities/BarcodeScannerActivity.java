@@ -26,14 +26,14 @@ public class BarcodeScannerActivity extends Activity implements DecoratedBarcode
         //플래쉬 버튼
         switchFlashlightButtonCheck = true;
 
-        switchFlashlightButton = (ImageButton)findViewById(R.id.switch_flashlight);
+        switchFlashlightButton = findViewById(R.id.switch_flashlight);
 
         //카메라에 플래쉬 기능이 있으면 ON
         if (!hasFlash()) {
             switchFlashlightButton.setVisibility(View.GONE);
         }
         //커스텀한 바코드 스캐너
-        barcodeScannerView = (DecoratedBarcodeView)findViewById(R.id.zxing_barcode_scanner);
+        barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         barcodeScannerView.setTorchListener(this);
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
