@@ -93,9 +93,7 @@ public class FragSetting extends Fragment {
         });
         return view;
     }
-<<<<<<< HEAD
-}
-=======
+
 
     public void initializeViews(View view) {
         //내 알러지 설정 버튼
@@ -117,4 +115,3 @@ public class FragSetting extends Fragment {
         userDAO.deleteAllergy();
     }
 }
->>>>>>> upstream/master

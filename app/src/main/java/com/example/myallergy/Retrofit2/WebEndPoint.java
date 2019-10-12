@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface WebEndPoint {
@@ -12,4 +13,6 @@ public interface WebEndPoint {
     //약정보 url
     @GET("/MyAllergy/medicine")
     Call<List<MedicineVO>> searchMedicine(@Query("mname") String mname);
+
+    @POST
 }
