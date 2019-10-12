@@ -31,7 +31,7 @@ public class FragHome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //바코드 스캔 버튼 클릭시 activity 전환
-        btnBarcode= (Button)view.findViewById(R.id.barcode_btn);
+        btnBarcode= view.findViewById(R.id.barcode_btn);
         btnBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

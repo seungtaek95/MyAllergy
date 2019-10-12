@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     //홈화면, 네비게이션 바 생성
     private void createHomeScreen () {
         //네비게이션 바 생성
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
         //네비게이션 바 고정
         bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);

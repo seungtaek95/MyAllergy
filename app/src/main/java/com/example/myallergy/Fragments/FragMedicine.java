@@ -63,11 +63,11 @@ public class FragMedicine extends Fragment {
         return view;
     }
 
-    //view 객체 초기화
+    //view 초기화
     public void initializeView(View view) {
-        eText = (EditText)view.findViewById(R.id.medicine_editText);                   //약 검색 창
-        btnSearch = (ImageButton)view.findViewById(R.id.medicine_btn_search);          //검색 버튼
-        layout = (LinearLayout)view.findViewById(R.id.medicine_layout_search_result);  //결과 레이아웃
+        eText = view.findViewById(R.id.medicine_editText);               //약 검색 창
+        btnSearch = view.findViewById(R.id.medicine_btn_search);         //검색 버튼
+        layout = view.findViewById(R.id.medicine_layout_search_result);  //결과 레이아웃
     }
 
     //약 검색
