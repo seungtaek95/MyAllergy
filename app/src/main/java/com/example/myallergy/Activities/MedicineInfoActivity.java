@@ -66,7 +66,7 @@ public class MedicineInfoActivity extends AppCompatActivity {
     public void setTextView () {
         //인텐트로 받아온 값들로 텍스트뷰 설정
         Intent intent = getIntent();
-        MedicineVO medicine = (MedicineVO)intent.getSerializableExtra("MEDICINE");
+        MedicineVO medicine = (MedicineVO)intent.getSerializableExtra("medicine");
 
         mname.setText(medicine.getMname());
         company.setText(medicine.getCompany());

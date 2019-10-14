@@ -10,15 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.myallergy.Activities.BarcodeScannerActivity;
+import com.example.myallergy.Activities.ProductSearchActivity;
 import com.example.myallergy.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class FragHome extends Fragment {
-    Button btnBarcode;
+    private EditText eTextSearch;
+    private ImageButton imageButtonSearch;
+    private Button btnBarcode;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +36,29 @@ public class FragHome extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //바코드 스캔 버튼 클릭시 activity 전환
+        initializeViews(view);
+        setButtonClickListener();
+
+        return view;
+    }
+
+    private void initializeViews(View view) {
+        eTextSearch = view.findViewById(R.id.eText_search_product);
+        imageButtonSearch = view.findViewById(R.id.imageButton_search_product);
         btnBarcode= view.findViewById(R.id.barcode_btn);
+    }
+
+    private void setButtonClickListener() {
+        //상품검색 버튼 클릭
+        imageButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ProductSearchActivity.class);
+                intent.putExtra("pname", eTextSearch.getText().toString());
+                startActivity(intent);
+            }
+        });
+        //바코드 스캔 버튼 클릭시 activity 전환
         btnBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +67,6 @@ public class FragHome extends Fragment {
                 integrator.initiateScan();
             }
         });
-        return view;
     }
 
     //바코드 인식시 결과 화면

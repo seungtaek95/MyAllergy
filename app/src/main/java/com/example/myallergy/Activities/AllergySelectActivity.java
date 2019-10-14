@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllergySelectActivity extends AppCompatActivity {
-    final int ALLERGY_COUNT = 22;
+    final int ALLERGY_COUNT = 23;
     UserDataBase db;
     AllergyDAO allergyDAO;
 

@@ -1,7 +1,8 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:orientation="vertical">
     <TextView
         android:layout_gravity="center"
@@ -20,146 +21,178 @@
 
         <CheckBox
             android:layout_marginRight="60dp"
+=======
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_gravity="center"
+>>>>>>> upstream/master
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="계란"
+            android:text="해당 알러지에 체크하세요"
             android:textSize="30dp"
-            android:id="@+id/check1"/>
-        <CheckBox
+            android:layout_margin="30dp"/>
+
+        <GridLayout
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="밀"
-            android:textSize="30dp"
-            android:id="@+id/check2"/>
-        <CheckBox
+            android:columnCount="2"
+            android:rowCount="11"
+            >
+            <CheckBox
+                android:layout_marginRight="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계란"
+                android:textSize="30dp"
+                android:id="@+id/check1"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="밀"
+                android:textSize="30dp"
+                android:id="@+id/check2"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대두"
+                android:textSize="30dp"
+                android:id="@+id/check3"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="고등어"
+                android:textSize="30dp"
+                android:id="@+id/check4"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="복숭아"
+                android:textSize="30dp"
+                android:id="@+id/check5"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="호두"
+                android:textSize="30dp"
+                android:id="@+id/check6"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닭고기"
+                android:textSize="30dp"
+                android:id="@+id/check7"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오징어"
+                android:textSize="30dp"
+                android:id="@+id/check8"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홍합"
+                android:textSize="30dp"
+                android:id="@+id/check9"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="굴"
+                android:textSize="30dp"
+                android:id="@+id/check10"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="우유"
+                android:textSize="30dp"
+                android:id="@+id/check11"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="새우"
+                android:textSize="30dp"
+                android:id="@+id/check12"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="메밀"
+                android:textSize="30dp"
+                android:id="@+id/check13"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="땅콩"
+                android:textSize="30dp"
+                android:id="@+id/check14"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="돼지고기"
+                android:textSize="30dp"
+                android:id="@+id/check15"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토마토"
+                android:textSize="30dp"
+                android:id="@+id/check16"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="잣"
+                android:textSize="30dp"
+                android:id="@+id/check17"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소고기"
+                android:textSize="30dp"
+                android:id="@+id/check18"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="조개류"
+                android:textSize="30dp"
+                android:id="@+id/check19"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전복"
+                android:textSize="30dp"
+                android:id="@+id/check20" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아황산"
+                android:textSize="30dp"
+                android:id="@+id/check21" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="게"
+                android:textSize="30dp"
+                android:id="@+id/check22" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="메추리알"
+                android:textSize="30dp"
+                android:id="@+id/check23" />
+        </GridLayout>
+        <Button
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="대두"
+            android:textColor="#ffffff"
+            android:text="완료"
             android:textSize="30dp"
-            android:id="@+id/check3"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="고등어"
-            android:textSize="30dp"
-            android:id="@+id/check4"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="복숭아"
-            android:textSize="30dp"
-            android:id="@+id/check5"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="호두"
-            android:textSize="30dp"
-            android:id="@+id/check6"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="닭고기"
-            android:textSize="30dp"
-            android:id="@+id/check7"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="오징어"
-            android:textSize="30dp"
-            android:id="@+id/check8"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="홍합"
-            android:textSize="30dp"
-            android:id="@+id/check9"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="굴"
-            android:textSize="30dp"
-            android:id="@+id/check10"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="우유"
-            android:textSize="30dp"
-            android:id="@+id/check11"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="새우"
-            android:textSize="30dp"
-            android:id="@+id/check12"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="메밀"
-            android:textSize="30dp"
-            android:id="@+id/check13"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="땅콩"
-            android:textSize="30dp"
-            android:id="@+id/check14"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="돼지고기"
-            android:textSize="30dp"
-            android:id="@+id/check15"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="토마토"
-            android:textSize="30dp"
-            android:id="@+id/check16"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="잣"
-            android:textSize="30dp"
-            android:id="@+id/check17"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="소고기"
-            android:textSize="30dp"
-            android:id="@+id/check18"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="조개류"
-            android:textSize="30dp"
-            android:id="@+id/check19"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전복"
-            android:textSize="30dp"
-            android:id="@+id/check20" />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아황산"
-            android:textSize="30dp"
-            android:id="@+id/check21" />
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="게"
-            android:textSize="30dp"
-            android:id="@+id/check22" />
-    </GridLayout>
-    <Button
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:text="완료"
-        android:textSize="30dp"
-        android:id="@+id/allergy_submit"
-        android:layout_margin="30dp"
-        android:background="@color/colorAccent"/>
-</LinearLayout>
+            android:id="@+id/allergy_submit"
+            android:layout_margin="30dp"
+            android:background="@color/colorAccent"/>
+    </LinearLayout>
+</ScrollView>
