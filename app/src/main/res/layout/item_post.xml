@@ -13,8 +13,7 @@
         <ImageView
             android:id="@+id/post_foodImage"
             android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:src="@drawable/ic_search_black_24"/>
+            android:layout_height="125dp"/>
 
         <TextView
             android:id="@+id/post_writerText"
