@@ -18,6 +18,7 @@ import com.example.myallergy.DataBase.Medicine;
 import com.example.myallergy.DataBase.MedicineDAO;
 import com.example.myallergy.DataBase.UserDataBase;
 import com.example.myallergy.R;
+import com.example.myallergy.Receiver.AlarmReceiver;
 
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class MyMedicineAdapter extends BaseAdapter {
         btnAlarm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent2 = new Intent(v.getContext(),AlarmActivity.class);
+                Intent intent2 = new Intent(v.getContext(), AlarmReceiver.class);
                 intent2.putExtra("medicineName",medicineName);
                 v.getContext().startActivity(intent2);
             }
