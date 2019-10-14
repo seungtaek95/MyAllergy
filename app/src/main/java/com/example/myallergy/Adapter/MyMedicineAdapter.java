@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,10 @@ import java.util.List;
 
 
 public class MyMedicineAdapter extends BaseAdapter {
-
-    LayoutInflater mLayoutInflater;
-    List<Medicine> medicineList;
-    TextView textView;
-    ImageButton btnAlarm, btnDelete;
+    private LayoutInflater mLayoutInflater;
+    private List<Medicine> medicineList;
+    private TextView textView;
+    private ImageButton btnAlarm, btnDelete;
 
     public MyMedicineAdapter() {
         medicineList = new ArrayList<>();
@@ -55,7 +55,26 @@ public class MyMedicineAdapter extends BaseAdapter {
             convertView = mLayoutInflater.inflate(R.layout.my_medicine_item, viewGroup, false);
         }
         initializeViews(convertView);
+        if(getCount() == 0) {
+            createNoListView(context);
+        } else {
+            createLIstViewItem(position, context);
+        }
 
+        return convertView;
+    }
+
+    private void initializeViews(View view) {
+        textView = view.findViewById(R.id.my_medicine_name);
+        btnAlarm = view.findViewById(R.id.btn_my_medicine_setAlarm);
+        btnDelete = view.findViewById(R.id.btn_my_medicine_delete);
+    }
+
+    private void createNoListView(final Context context) {
+        textView.setText("내 복용약이 없습니다");
+    }
+
+    private void createLIstViewItem(final int position, final Context context) {
         //약 이름으로 textview 설정
         final String medicineName = medicineList.get(position).getMedicineName();
         textView.setText(medicineName);
@@ -73,18 +92,11 @@ public class MyMedicineAdapter extends BaseAdapter {
         btnAlarm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent2 = new Intent(v.getContext(), AlarmActivity.class);
-                intent2.putExtra("medicineName",medicineName);
-                v.getContext().startActivity(intent2);
+                Intent intent = new Intent(v.getContext(), AlarmActivity.class);
+                intent.putExtra("medicineName",medicineName);
+                v.getContext().startActivity(intent);
             }
         });
-        return convertView;
-    }
-
-    public void initializeViews(View view) {
-        textView = view.findViewById(R.id.my_medicine_name);
-        btnAlarm = view.findViewById(R.id.btn_my_medicine_setAlarm);
-        btnDelete = view.findViewById(R.id.btn_my_medicine_delete);
     }
 
     public void addMedicine(Medicine medicine) {
@@ -92,33 +104,28 @@ public class MyMedicineAdapter extends BaseAdapter {
     }
 
     //삭제 확인 알림창 팝업
-    public void alertDialogHandler(final Context context, final int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("내 복용약에서 삭제");
-        builder.setMessage("내 복용약에서 삭제하시겠습니까??");
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                UserDataBase db = UserDataBase.getInstance(context);
-                MedicineDAO medicineDAO = db.getMedicineDAO();
-                //db에서 해당 약 삭제
-                deleteThisMedicine(medicineDAO, medicineList.get(position));
-            }
-        });
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.show();
+    private void alertDialogHandler(final Context context, final int position) {
+        new AlertDialog.Builder(context)
+                .setTitle("내 복용약에서 삭제")
+                .setMessage("내 복용약에서 삭제하시겠습니까??")
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        UserDataBase db = UserDataBase.getInstance(context);
+                        MedicineDAO medicineDAO = db.getMedicineDAO();
+                        //db에서 해당 약 삭제
+                        deleteThisMedicine(medicineDAO, medicineList.get(position));
+                    }
+                })
+                .setNegativeButton("아니오", null)
+                .show();
     }
 
-    public void updateMedicineList(List<Medicine> medicineList) {
+    private void updateMedicineList(List<Medicine> medicineList) {
         this.medicineList = medicineList;
     }
 
-    public void deleteThisMedicine(final MedicineDAO medicineDAO, final Medicine medicine) {
+    private void deleteThisMedicine(final MedicineDAO medicineDAO, final Medicine medicine) {
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 //db에서 삭제하고 리스트 새로 받아옴
@@ -132,7 +139,7 @@ public class MyMedicineAdapter extends BaseAdapter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //리스트뷰 새로고침
+
         notifyDataSetChanged();
     }
 }

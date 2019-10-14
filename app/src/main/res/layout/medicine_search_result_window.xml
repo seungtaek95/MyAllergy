@@ -132,12 +132,12 @@
         android:layout_weight="1">
         <Button
             android:id="@+id/medicine_add_my"
-            android:background="@color/design_default_color_primary_dark"
+            android:background="@color/colorAccent"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="  내 복용약에 추가  "
             android:textSize="20dp"
-            android:textColor="@color/cardview_light_background"/>
+            android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>

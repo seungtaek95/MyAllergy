@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#3F51B5"></LinearLayout>
+        android:background="@color/colorAccent"></LinearLayout>
 
     <ImageButton
 
@@ -39,15 +39,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:background="#3F51B5"
+        android:background="@color/colorAccent"
         android:gravity="center_horizontal">
 
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/zxing_status_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/zxing_transparent"
             android:text="눈금에 바코드를 맞춰주세요"
+            android:textSize="20dp"
             android:textColor="@color/zxing_status_text" />
     </LinearLayout>
 </RelativeLayout>

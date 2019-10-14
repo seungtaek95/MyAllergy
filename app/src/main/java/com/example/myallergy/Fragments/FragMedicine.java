@@ -24,6 +24,7 @@ import com.example.myallergy.Activities.MedicineInfoActivity;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.MedicineVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
+import com.example.myallergy.SearchResultView;
 
 
 import org.w3c.dom.Text;
@@ -38,9 +39,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class FragMedicine extends Fragment {
-    EditText eText;
-    ImageButton btnSearch;
-    LinearLayout layout;
+    private EditText eText;
+    private ImageButton btnSearch;
+    private LinearLayout layout;
+    private SearchResultView resultView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +51,7 @@ public class FragMedicine extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_medicine, container, false);
         initializeView(view);
 
@@ -67,36 +68,33 @@ public class FragMedicine extends Fragment {
     }
 
     //view 초기화
-    public void initializeView(View view) {
+    private void initializeView(View view) {
         eText = view.findViewById(R.id.medicine_editText);               //약 검색 창
         btnSearch = view.findViewById(R.id.medicine_btn_search);         //검색 버튼
         layout = view.findViewById(R.id.medicine_layout_search_result);  //결과 레이아웃
     }
 
-    //약 검색
-    public void searchMedicine () {
-        //retrofit 초기화
-        Retrofit retrofit = new Retrofit.Builder()
+    private WebEndPoint getEndPoint() {
+        WebEndPoint endPoint = new Retrofit.Builder()
                 .baseUrl(WebEndPoint.URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        WebEndPoint endPoints = retrofit.create(WebEndPoint.class);
+                .build()
+                .create(WebEndPoint.class);
+        return endPoint;
+    }
 
+    //약 검색
+    private void searchMedicine () {
+        WebEndPoint endPoints = getEndPoint();
         String mname = eText.getText().toString();
+        resultView = new SearchResultView();
 
         //edit text에서 문자열 가져와서 비동기로 통신
         endPoints.searchMedicine(mname).enqueue(new Callback<List<MedicineVO>>() {
             @Override
             public void onResponse(Call<List<MedicineVO>> call, Response<List<MedicineVO>> response) {
                 List<MedicineVO> list = response.body();
-                //검색결과 레이아웃 생성
-                if(list.size() == 0)
-                    createNothingFoundResult();
-                else {
-                    for(int i = 0; i < list.size(); i++) {
-                        createSearchResult(list.get(i));
-                    }
-                }
+                createResultView(list);
             }
             @Override
             public void onFailure(Call<List<MedicineVO>> call, Throwable t) {
@@ -105,38 +103,21 @@ public class FragMedicine extends Fragment {
         });
     }
 
-    //검색 결과 textview 생성
-    public void createSearchResult (final MedicineVO medicine) {
-        TextView resultText = new TextView(getContext());
-        resultText.setPadding(30, 30, 30, 30);
-        resultText.setTextSize(30);
-        resultText.setMaxLines(1);
-        //뒷부분 ... 으로 표시
-        resultText.setEllipsize(TextUtils.TruncateAt.END);
-        resultText.setText(medicine.getMname());
-        //클릭 시 상세정보 화면 전환
-        resultText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MedicineInfoActivity.class);
-                intent.putExtra("MEDICINE", medicine);
-                startActivity(intent);
-            }
-        });
-        //레이아웃에 추가
-        layout.addView(resultText);
-    }
+    private void createResultView(List<MedicineVO> list) {
+        if(list.isEmpty()) {
+            layout.addView(resultView
+                    .createNothingFoundResult(getContext()));
+            return;
+        }
+        for(MedicineVO medicine : list) {
+            layout.addView(resultView
+                    .createResultMedicine(getContext(), medicine));
 
-    public void createNothingFoundResult () {
-        TextView resultText = new TextView(getContext());
-        resultText.setGravity(Gravity.CENTER);
-        resultText.setText("검색 결과가 없습니다");
-        resultText.setTextSize(30);
-        layout.addView(resultText);
+        }
     }
 
     //키보드 숨기기
-    public void hideKeyBoard () {
+    private void hideKeyBoard () {
         InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
