@@ -15,10 +15,22 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.myallergy.Activities.BarcodeScannerActivity;
+import com.example.myallergy.Activities.ProductInfoActivity;
 import com.example.myallergy.Activities.ProductSearchActivity;
 import com.example.myallergy.R;
+import com.example.myallergy.Retrofit2.ProductVO;
+import com.example.myallergy.Retrofit2.WebEndPoint;
+import com.example.myallergy.SearchResultView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragHome extends Fragment {
     private EditText eTextSearch;
@@ -62,7 +74,7 @@ public class FragHome extends Fragment {
         btnBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                IntentIntegrator integrator = IntentIntegrator.forSupportFragment(FragHome.this);
                 integrator.setCaptureActivity(BarcodeScannerActivity.class);
                 integrator.initiateScan();
             }
@@ -72,14 +84,46 @@ public class FragHome extends Fragment {
     //바코드 인식시 결과 화면
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d("onActivityResult", "onActivityResult: .");
+        super.onActivityResult(requestCode, resultCode, intent);
+
         if (resultCode == Activity.RESULT_OK) {
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             String result = scanResult.getContents();
-            Log.d("onActivityResult", "onActivityResult: ." + result);
 
-            //바코드 번호 Taost 메세지
-            Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+            searchProduct(result);
         }
+    }
+
+    private WebEndPoint getEndPoint() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(WebEndPoint.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebEndPoint endPoint = retrofit.create(WebEndPoint.class);
+        return endPoint;
+    }
+
+    private void searchProduct (String barcode) {
+        WebEndPoint endPoint = getEndPoint();
+
+        endPoint.searchProductBarcode("barcode", barcode).enqueue(new Callback<ProductVO>() {
+            @Override
+            public void onResponse(Call<ProductVO> call, Response<ProductVO> response) {
+                ProductVO product = response.body();
+
+                if (product.getPname() == null) {
+                    Intent intent = new Intent(getContext(), ProductSearchActivity.class);
+                    intent.putExtra("pname", "");
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), ProductInfoActivity.class);
+                    intent.putExtra("product", product);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onFailure(Call<ProductVO> call, Throwable t) {
+            }
+        });
     }
 }

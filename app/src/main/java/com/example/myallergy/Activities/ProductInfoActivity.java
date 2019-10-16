@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myallergy.DataBase.Allergy;
+import com.example.myallergy.DataBase.AllergyDAO;
 import com.example.myallergy.DataBase.Medicine;
 import com.example.myallergy.DataBase.MedicineDAO;
 import com.example.myallergy.DataBase.UserDataBase;
@@ -25,10 +27,15 @@ import java.util.List;
 
 public class ProductInfoActivity extends AppCompatActivity {
     private ImageView imageView;
-    private TextView pname, prdkind, allergy, rawmtrl, nutrition, seller;
+    private TextView alertAllergy, alertText, pname, prdkind, allergy, rawmtrl, nutrition, seller;
 
     private UserDataBase db;
+    private AllergyDAO allergyDAO;
 
+    StringBuffer alertMessage;
+    private String productAllergy;
+    private List<Allergy> myAllergyList;
+    boolean isContained;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,10 +45,15 @@ public class ProductInfoActivity extends AppCompatActivity {
         //view 초기화, 텍스트뷰 초기화
         initializeView();
         setTextView();
+        initializeDB();
+        alertMyAllergy();
     }
 
     private void initializeView() {
         imageView = findViewById(R.id.product_image);
+        alertMessage = new StringBuffer();
+        alertAllergy = findViewById(R.id.alert_my_allergy_allergy);
+        alertText = findViewById(R.id.alert_my_allergy_text);
         pname = findViewById(R.id.product_pname);
         prdkind = findViewById(R.id.product_prdkind);
         allergy = findViewById(R.id.product_allergy);
@@ -62,6 +74,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         pname.setText(product.getPname());
         prdkind.setText(product.getPrdkind());
         allergy.setText(product.getAllergy());
+        productAllergy = product.getAllergy();
         rawmtrl.setText(product.getRawmtrl());
         nutrition.setText(product.getNutrition());
         seller.setText(product.getSeller());
@@ -71,4 +84,49 @@ public class ProductInfoActivity extends AppCompatActivity {
         Glide.with(this).load(url).into(imageView);
     }
 
+    private void initializeDB() {
+        db = UserDataBase.getInstance(getApplicationContext());
+        allergyDAO = db.getAllergyDAO();
+    }
+
+    private void alertMyAllergy() {
+        Thread thread = new Thread() {
+            public void run() {
+                setMyAllergyList(allergyDAO.getAllergyList());
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        compareAllergy();
+        setAllertTextView();
+    }
+
+    private void setMyAllergyList(List<Allergy> myAllergyList) {
+        this.myAllergyList = myAllergyList;
+    }
+
+    private void compareAllergy() {
+        for (Allergy allergy : myAllergyList) {
+            createAllertMessage(allergy.getAllergyName(), productAllergy);
+        }
+    }
+
+    private void createAllertMessage(String myAllergy, String productAllergy) {
+        if (productAllergy.contains(myAllergy)) {
+            alertMessage.append("'" + myAllergy + "' ");
+            isContained = true;
+        }
+    }
+
+    private void setAllertTextView() {
+        if (isContained) {
+            alertAllergy.setText(alertMessage);
+            alertAllergy.setTextSize(30);
+            alertText.setTextSize(30);
+        }
+    }
 }

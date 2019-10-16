@@ -14,7 +14,9 @@ public interface WebEndPoint {
     Call<List<MedicineVO>> searchMedicine(@Query("mname") String mname);
     //상품정보 url
     @GET("/MyAllergy/product")
-    Call<List<ProductVO>> searchProduct(@Query("type") String type,
-                                        @Query("barcode") String barcode,
-                                        @Query("pname") String pname);
+    Call<List<ProductVO>> searchProductName(@Query("type") String type,
+                                            @Query("pname") String pname);
+    @GET("MyAllergy/product")
+    Call<ProductVO> searchProductBarcode(@Query("type") String type,
+                                         @Query("barcode") String barcode);
 }
