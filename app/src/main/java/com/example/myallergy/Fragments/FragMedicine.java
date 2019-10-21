@@ -1,33 +1,21 @@
 package com.example.myallergy.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.myallergy.Activities.MedicineInfoActivity;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.MedicineVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 import com.example.myallergy.SearchResultView;
-
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

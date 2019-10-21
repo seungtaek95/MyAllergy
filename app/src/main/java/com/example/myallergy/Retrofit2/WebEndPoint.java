@@ -12,13 +12,10 @@ public interface WebEndPoint {
     //약정보 url
     @GET("/MyAllergy/medicine")
     Call<List<MedicineVO>> searchMedicine(@Query("mname") String mname);
-<<<<<<< HEAD
 
-=======
     //상품정보 url
     @GET("/MyAllergy/product")
     Call<List<ProductVO>> searchProduct(@Query("type") String type,
                                         @Query("barcode") String barcode,
                                         @Query("pname") String pname);
->>>>>>> upstream/master
 }
