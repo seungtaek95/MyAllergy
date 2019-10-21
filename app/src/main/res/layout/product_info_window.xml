@@ -19,6 +19,22 @@
             android:id="@+id/product_image"
             android:layout_marginBottom="30dp"/>
         <TextView
+            android:id="@+id/alert_my_allergy_allergy"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0000"
+            android:textSize="0dp"/>
+        <TextView
+            android:id="@+id/alert_my_allergy_text"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알러지 유발식품"
+            android:textColor="#ff0000"
+            android:textSize="0dp"/>
+        <TextView
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -36,6 +36,12 @@ public class ProductSearchActivity extends AppCompatActivity {
 
         initializeViews();
         searchProduct(getPnameFromIntent());
+    }
+
+    private void initializeViews() {
+        eText = findViewById(R.id.eText_search_product);
+        imageButtonSearch = findViewById(R.id.imageButton_search_product);
+        layout = findViewById(R.id.layout_product_search);
 
         imageButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +51,6 @@ public class ProductSearchActivity extends AppCompatActivity {
                 searchProduct(eText.getText().toString());
             }
         });
-    }
-
-    private void initializeViews() {
-        eText = findViewById(R.id.eText_search_product);
-        imageButtonSearch = findViewById(R.id.imageButton_search_product);
-        layout = findViewById(R.id.layout_product_search);
     }
 
     private String getPnameFromIntent() {
@@ -71,7 +71,11 @@ public class ProductSearchActivity extends AppCompatActivity {
         WebEndPoint endPoint = getEndPoint();
         resultView = new SearchResultView();
 
-        endPoint.searchProduct("pname", "", pname).enqueue(new Callback<List<ProductVO>>() {
+        if(pname == "") {
+            createResultView(null);
+            return;
+        }
+        endPoint.searchProductName("pname", pname).enqueue(new Callback<List<ProductVO>>() {
             @Override
             public void onResponse(Call<List<ProductVO>> call, Response<List<ProductVO>> response) {
                 List<ProductVO> list = response.body();
@@ -85,14 +89,14 @@ public class ProductSearchActivity extends AppCompatActivity {
 
     private void createResultView(List<ProductVO> list) {
         //검색결과 레이아웃 생성
-        if(list.size() == 0)
+        if (list.isEmpty()) {
             layout.addView(resultView
                     .createNothingFoundResult(getApplicationContext()));
-        else {
-            for(int i = 0; i < list.size(); i++) {
-                layout.addView(resultView
-                        .createResultTextProduct(getApplicationContext(), list.get(i)));
-            }
+            return;
+        }
+        for (ProductVO product : list) {
+            layout.addView(resultView
+                    .createResultTextProduct(getApplicationContext(), product));
         }
     }
 
