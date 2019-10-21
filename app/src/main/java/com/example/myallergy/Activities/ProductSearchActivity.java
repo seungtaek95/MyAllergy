@@ -36,6 +36,12 @@ public class ProductSearchActivity extends AppCompatActivity {
 
         initializeViews();
         searchProduct(getPnameFromIntent());
+    }
+
+    private void initializeViews() {
+        eText = findViewById(R.id.eText_search_product);
+        imageButtonSearch = findViewById(R.id.imageButton_search_product);
+        layout = findViewById(R.id.layout_product_search);
 
         imageButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +51,6 @@ public class ProductSearchActivity extends AppCompatActivity {
                 searchProduct(eText.getText().toString());
             }
         });
-    }
-
-    private void initializeViews() {
-        eText = findViewById(R.id.eText_search_product);
-        imageButtonSearch = findViewById(R.id.imageButton_search_product);
-        layout = findViewById(R.id.layout_product_search);
     }
 
     private String getPnameFromIntent() {
