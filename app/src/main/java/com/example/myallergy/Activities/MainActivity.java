@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.example.myallergy.Fragments.FragCommunity;
 import com.example.myallergy.Fragments.FragHome;
-import com.example.myallergy.Fragments.FragMedicine;
+import com.example.myallergy.Fragments.FragCategory;
 import com.example.myallergy.Fragments.FragSetting;
 import com.example.myallergy.R;
 import com.nhn.android.naverlogin.OAuthLogin;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_medicine:
                     if(fragMedicine == null) {
-                        fragMedicine = new FragMedicine();
+                        fragMedicine = new FragCategory();
                         addFragment(fragMedicine);
                     }
                     showFragment(fragMedicine);

@@ -52,7 +52,7 @@ public class MyMedicineAdapter extends BaseAdapter {
         //뷰 초기화
         if(convertView == null) {
             mLayoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = mLayoutInflater.inflate(R.layout.my_medicine_item, viewGroup, false);
+            convertView = mLayoutInflater.inflate(R.layout.item_my_medicine, viewGroup, false);
         }
         initializeViews(convertView);
         if(getCount() == 0) {
@@ -99,10 +99,6 @@ public class MyMedicineAdapter extends BaseAdapter {
         });
     }
 
-    public void addMedicine(Medicine medicine) {
-        medicineList.add(medicine);
-    }
-
     //삭제 확인 알림창 팝업
     private void alertDialogHandler(final Context context, final int position) {
         new AlertDialog.Builder(context)
@@ -121,7 +117,7 @@ public class MyMedicineAdapter extends BaseAdapter {
                 .show();
     }
 
-    private void updateMedicineList(List<Medicine> medicineList) {
+    public void updateMedicineList(List<Medicine> medicineList) {
         this.medicineList = medicineList;
     }
 
@@ -139,7 +135,6 @@ public class MyMedicineAdapter extends BaseAdapter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         notifyDataSetChanged();
     }
 }

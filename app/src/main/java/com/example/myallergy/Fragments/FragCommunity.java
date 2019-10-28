@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.CommunityVO;
-import com.example.myallergy.Retrofit2.ProductVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 
 import java.util.List;

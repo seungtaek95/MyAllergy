@@ -27,6 +27,7 @@
         <activity android:name=".Activities.MedicineInfoActivity"/>
         <activity android:name=".Activities.MyMedicineActivity"/>
         <activity android:name=".Activities.AlarmActivity"/>
+        <activity android:name=".Activities.MedicineSearchActivity"/>
 
         <receiver android:name=".Receiver.DeviceBootReceiver" android:enabled="false">
             <intent-filter>
