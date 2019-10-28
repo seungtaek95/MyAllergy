@@ -9,14 +9,35 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:text="커뮤니티"
-        android:textColor="@color/black"
         android:textSize="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <ListView
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/container_post"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical">
+
+    </ListView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="right">
+
+        <ImageButton
+            android:id="@+id/post_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/posting_button"
+            android:backgroundTint="#FF8184"
+            android:src="@drawable/ic_edit_black_24dp" />
+    </RelativeLayout>
+
 </LinearLayout>

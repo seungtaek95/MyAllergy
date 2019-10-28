@@ -8,30 +8,50 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="137dp">
+
+        <TextView
+            android:id="@+id/post_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="날짜"
+            android:textSize="12dp"/>
 
         <ImageView
             android:id="@+id/post_foodImage"
             android:layout_width="125dp"
-            android:layout_height="125dp"/>
+            android:layout_height="125dp"
+            android:layout_below="@+id/post_date" />
 
         <TextView
-            android:id="@+id/post_writerText"
+            android:id="@+id/post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/post_foodImage"
-            android:text="작성자"
-            android:textSize="25dp"/>
+            android:layout_below="@+id/post_date"
+            android:text="제목"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/post_postText"
+            android:id="@+id/post_writer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/post_writerText"
+            android:layout_toRightOf="@+id/post_foodImage"
+            android:layout_below="@+id/post_title"
+            android:text="작성자"
+            android:textSize="11dp" />
+
+
+        <TextView
+            android:id="@+id/post_post"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/post_writer"
             android:layout_toRightOf="@id/post_foodImage"
             android:text="포스팅내용"
-            android:textSize="15dp"/>
-       
+            android:textSize="13dp" />
+
     </RelativeLayout>
 
 

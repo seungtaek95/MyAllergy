@@ -3,15 +3,8 @@ package com.example.myallergy.Activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-<<<<<<< HEAD:app/src/main/java/com/example/myallergy/Fragments/FragMedicine.java
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-=======
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
->>>>>>> upstream/master:app/src/main/java/com/example/myallergy/Activities/MedicineSearchActivity.java
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
