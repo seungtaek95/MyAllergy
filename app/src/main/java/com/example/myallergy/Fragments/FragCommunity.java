@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.CommunityVO;
-import com.example.myallergy.Retrofit2.ProductVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 
 import java.util.List;
@@ -39,9 +38,7 @@ public class FragCommunity extends Fragment {
 
         return view;
     }
-<<<<<<< HEAD
-}
-=======
+
 
     private void initializeView(View view) {
         content = view.findViewById(R.id.content);
@@ -72,4 +69,3 @@ public class FragCommunity extends Fragment {
         });
     }
 }
->>>>>>> upstream/master
