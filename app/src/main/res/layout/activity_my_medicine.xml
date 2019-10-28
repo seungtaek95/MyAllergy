@@ -5,16 +5,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/white">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="내 복용약"
-        android:textSize="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="내 복용약"
+            android:textSize="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/my_medicine_add"
+            android:clickable="true"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="+"
+            android:textSize="40dp"/>
+    </RelativeLayout>
     <ListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/my_medicine_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -50,7 +50,7 @@ public class SearchResultView {
             public void onClick(View view) {
                 Intent intent = new Intent(context, MedicineInfoActivity.class);
                 intent.putExtra("medicine", medicine);
-                context.startActivity(intent);
+                context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
 

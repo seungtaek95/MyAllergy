@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:text="커뮤니티"
+        android:textColor="@color/black"
         android:textSize="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"

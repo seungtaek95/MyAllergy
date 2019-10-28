@@ -66,6 +66,7 @@ public class FragHome extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ProductSearchActivity.class);
+                intent.putExtra("type", "pname");
                 intent.putExtra("pname", eTextSearch.getText().toString());
                 startActivity(intent);
             }
