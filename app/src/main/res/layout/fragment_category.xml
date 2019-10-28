@@ -27,57 +27,59 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
             <TableRow
-                android:layout_width="match_parent"
                 android:layout_gravity="center">
                 <LinearLayout
                     android:id="@+id/category_drink"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
+                    android:layout_weight="1"
                     android:background="#ffffff"
                     android:clickable="true"
                     android:layout_margin="10dp">
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/drink"/>
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="음료"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/category_simple"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
+                    android:layout_weight="1"
                     android:background="#ffffff"
                     android:clickable="true"
                     android:layout_margin="10dp">
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/simple" />
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="간편식"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
             </TableRow>
             <TableRow
-                android:layout_width="match_parent"
                 android:layout_gravity="center">
                 <LinearLayout
                     android:id="@+id/category_snack"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -89,16 +91,17 @@
                         android:layout_height="200dp"
                         android:src="@drawable/snack"/>
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="과자"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/category_frozen"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -110,20 +113,20 @@
                         android:layout_height="200dp"
                         android:src="@drawable/frozen"/>
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="냉동식품"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
             </TableRow>
             <TableRow
-                android:layout_width="match_parent"
                 android:layout_gravity="center">
                 <LinearLayout
                     android:id="@+id/category_noodle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -135,16 +138,17 @@
                         android:layout_height="200dp"
                         android:src="@drawable/noodle"/>
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="면류"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/category_milk"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -156,11 +160,12 @@
                         android:layout_height="200dp"
                         android:src="@drawable/milk"/>
                     <TextView
+                        android:layout_marginBottom="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="유제품"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textColor="#000000"/>
                 </LinearLayout>
             </TableRow>

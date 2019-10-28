@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:id="@+id/product_image"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="20dp"/>
             <TextView
                 android:id="@+id/alert_my_allergy_allergy"
                 android:layout_gravity="center"
@@ -32,34 +32,21 @@
                 android:textSize="0dp"/>
             <TextView
                 android:id="@+id/alert_my_allergy_text"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="알러지 유발식품"
                 android:textColor="#ff0000"
                 android:textSize="0dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="제품명"
-                android:textColor="#000000"
-                android:textSize="20dp"/>
-            <TextView
-                android:layout_margin="30dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:id="@+id/product_pname"
-                android:textSize="20dp"/>
+                android:textSize="25dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -69,19 +56,21 @@
             android:background="@color/white"
             android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제품유형"
                 android:textColor="#000000"
-                android:textSize="20dp"/>
+                android:textSize="22dp"/>
             <TextView
-                android:layout_margin="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_prdkind"
-                android:textSize="20dp"/>
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -91,19 +80,21 @@
             android:background="@color/white"
             android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="알러지 유발 성분"
                 android:textColor="#000000"
-                android:textSize="20dp"/>
+                android:textSize="22dp"/>
             <TextView
-                android:layout_margin="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_allergy"
-                android:textSize="20dp"/>
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -113,19 +104,22 @@
             android:background="@color/white"
             android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="원재료명"
                 android:textColor="#000000"
-                android:textSize="20dp"/>
+                android:textSize="22dp"/>
             <TextView
-                android:layout_margin="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_rawmtrl"
-                android:textSize="20dp"/>
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -135,19 +129,22 @@
             android:background="@color/white"
             android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="영양성분"
                 android:textColor="#000000"
-                android:textSize="20dp"/>
+                android:textSize="22dp"/>
             <TextView
-                android:layout_margin="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_nutrition"
-                android:textSize="20dp"/>
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -157,19 +154,21 @@
             android:background="@color/white"
             android:layout_marginTop="20dp">
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제조업체"
                 android:textColor="#000000"
-                android:textSize="20dp"/>
+                android:textSize="22dp"/>
             <TextView
-                android:layout_margin="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/product_seller"
-                android:textSize="20dp"/>
+                android:textSize="18dp"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
