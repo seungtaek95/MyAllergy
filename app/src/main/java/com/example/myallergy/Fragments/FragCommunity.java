@@ -82,7 +82,6 @@ public class FragCommunity extends Fragment {
             public void onResponse(Call<List<PostVO>> call, Response<List<PostVO>> response) {
                 setCommunityList(response.body());
                 communityAdapter.setCommunityList(communityList);
-                communityAdapter.notifyDataSetChanged();
             }
             @Override
             public void onFailure(Call<List<PostVO>> call, Throwable t) {

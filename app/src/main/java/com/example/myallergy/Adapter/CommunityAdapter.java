@@ -25,6 +25,7 @@ public class CommunityAdapter extends BaseAdapter {
 
     public void setCommunityList(List<PostVO> communityList){
         this.communityList = communityList;
+        notifyDataSetChanged();
     }
 
     @Override
