@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.myallergy.DataBase.AllergyDAO;
+import com.example.myallergy.DataBase.User;
+import com.example.myallergy.DataBase.UserDataBase;
 import com.example.myallergy.Fragments.FragCommunity;
 import com.example.myallergy.Fragments.FragHome;
 import com.example.myallergy.Fragments.FragCategory;
@@ -19,6 +22,9 @@ import com.nhn.android.naverlogin.OAuthLogin;
 public class MainActivity extends AppCompatActivity {
     OAuthLogin mOAuthLogin;
     String token;
+
+    private AllergyDAO allergyDAO;
+    private UserDataBase userDataBase;
 
     BottomNavigationView bottomNavigationView;
     Fragment fragHome, fragMedicine, fragCommunity, fragSetting;
@@ -31,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         createHomeScreen();
 
         //네이버 로그인 사용자 인스턴스 가져오기
-        OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
-        String token = mOAuthLogin.getAccessToken(getApplicationContext());
-
         mOAuthLogin = OAuthLogin.getInstance();
         token = mOAuthLogin.getAccessToken(getApplicationContext());
 
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             createHomeScreen(); //홈 화면 생성
         }
         else { //로그인이 되어있다면
+            initializeDB();
+            setUserAllergyDatas();
             createHomeScreen(); //홈 화면 생성
         }
 
@@ -106,15 +111,30 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-    public void addFragment(Fragment frag) {
+    private void addFragment(Fragment frag) {
         fm.beginTransaction().add(R.id.main_frame, frag).commit();
     }
-    public void showFragment(Fragment frag) {
+    private void showFragment(Fragment frag) {
         if(frag != null) fm.beginTransaction().show(frag).commit();
     }
-    public void hideFragment(Fragment... frag) {
+    private void hideFragment(Fragment... frag) {
         for(Fragment tempFrag : frag) {
             if (tempFrag != null) fm.beginTransaction().hide(tempFrag).commit();
         }
+    }
+
+    //database, dao 초기화
+    private void initializeDB() {
+        userDataBase = UserDataBase.getInstance(getApplicationContext());
+        allergyDAO = userDataBase.getAllergyDAO();
+    }
+
+    //알러지 정보를 db에서 가져와서 user allergydata로 설정
+    private void setUserAllergyDatas () {
+        new Thread() {
+            public void run() {
+                User.userAllergyDatas = allergyDAO.getAllergyList();
+            }
+        }.start();
     }
 }

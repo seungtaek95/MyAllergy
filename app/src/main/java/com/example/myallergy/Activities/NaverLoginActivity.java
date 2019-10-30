@@ -4,9 +4,11 @@ package com.example.myallergy.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.myallergy.R;
 import com.nhn.android.naverlogin.OAuthLogin;
+import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
 import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
@@ -14,6 +16,7 @@ import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 public class NaverLoginActivity extends AppCompatActivity {
     public static OAuthLogin mOAuthLoginModule;
     OAuthLoginButton mOAuthLoginButton;
+    private OAuthLoginHandler mOAuthLoginHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,12 @@ public class NaverLoginActivity extends AppCompatActivity {
         //네이버로 로그인 모듈 초기화
         mOAuthLoginModule = OAuthLogin.getInstance();
         mOAuthLoginModule.init(this, "32ZtKDUrZ5z_TFOSBnzY", "zVKwrsfsvc", "clientName");
+        mOAuthLoginHandler = new OAuthLoginHandler() {
+            @Override
+            public void run(boolean b) {
+
+            }
+        };
         //네이버로 로그인 실행
         mOAuthLoginButton=findViewById(R.id.button_naverlogin);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);

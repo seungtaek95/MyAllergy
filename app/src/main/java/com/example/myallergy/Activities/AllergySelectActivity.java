@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 
 import com.example.myallergy.DataBase.Allergy;
 import com.example.myallergy.DataBase.AllergyDAO;
+import com.example.myallergy.DataBase.User;
 import com.example.myallergy.DataBase.UserDataBase;
 import com.example.myallergy.R;
 
@@ -60,18 +61,11 @@ public class AllergySelectActivity extends AppCompatActivity {
         }
     }
 
-    //알러지 정보 테이블이 존재하는지
+    //알러지 정보를 db에서 가져와서 checkbox 설정
     public void isAllergyTableExist () {
-        new Thread() {
-            public void run() {
-                //존재한다면 기존 알러지 정보를 checkbox에 체크
-                if(allergyDAO.getAllergyList() != null) {
-                    for(int i = 0; i < allergyDAO.getAllergyList().size(); i++) {
-                        setCheckBoxStatus(allergyDAO.getAllergyList().get(i));
-                    }
-                }
-            }
-        }.start();
+        for(Allergy allergy : User.userAllergyDatas) {
+            setCheckBoxStatus(allergy);
+        }
     }
 
     //기존 알러지 정보 checkbox에 체크
@@ -81,16 +75,6 @@ public class AllergySelectActivity extends AppCompatActivity {
                 checkBoxList.get(i).setChecked(true);
             }
         }
-    }
-
-    //checkBoxList에서 체크된 checkbox의 알러지 return
-    public String getCheckedAllergy(int i) {
-        return checkBoxList.get(i).getText().toString();
-    }
-
-    //checkBoxList에서 체크된 checkbox의 알러지아이디 return
-    public int getCheckedAllergyId(int i) {
-        return checkBoxList.get(i).getId();
     }
 
     //체크된 알러지 정보를 db에 저장
@@ -108,7 +92,19 @@ public class AllergySelectActivity extends AppCompatActivity {
                         allergyDAO.insert(tempAllergy);
                     }
                 }
+                User.userAllergyDatas = allergyDAO.getAllergyList();
             }
         }.start();
     }
+
+    //checkBoxList에서 체크된 checkbox의 알러지 return
+    public String getCheckedAllergy(int i) {
+        return checkBoxList.get(i).getText().toString();
+    }
+
+    //checkBoxList에서 체크된 checkbox의 알러지아이디 return
+    public int getCheckedAllergyId(int i) {
+        return checkBoxList.get(i).getId();
+    }
+
 }

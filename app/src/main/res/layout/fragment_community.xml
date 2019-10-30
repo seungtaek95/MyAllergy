@@ -10,6 +10,7 @@
         android:layout_margin="30dp"
         android:text="커뮤니티"
         android:textSize="40dp"
+        android:textColor="@color/black"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
