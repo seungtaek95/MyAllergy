@@ -17,6 +17,7 @@ import com.example.myallergy.DataBase.Allergy;
 import com.example.myallergy.DataBase.AllergyDAO;
 import com.example.myallergy.DataBase.Medicine;
 import com.example.myallergy.DataBase.MedicineDAO;
+import com.example.myallergy.DataBase.User;
 import com.example.myallergy.DataBase.UserDataBase;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.MedicineVO;
@@ -29,12 +30,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView alertAllergy, alertText, pname, prdkind, allergy, rawmtrl, nutrition, seller;
 
-    private UserDataBase db;
-    private AllergyDAO allergyDAO;
-
     StringBuffer alertMessage;
     private String productAllergy;
-    private List<Allergy> myAllergyList;
     boolean isContained;
 
     @Override
@@ -45,7 +42,6 @@ public class ProductInfoActivity extends AppCompatActivity {
         //view 초기화, 텍스트뷰 초기화
         initializeView();
         setTextView();
-        initializeDB();
         alertMyAllergy();
     }
 
@@ -60,9 +56,6 @@ public class ProductInfoActivity extends AppCompatActivity {
         rawmtrl = findViewById(R.id.product_rawmtrl);
         nutrition = findViewById(R.id.product_nutrition);
         seller = findViewById(R.id.product_seller);
-
-        //database, dao 초기화
-        db = UserDataBase.getInstance(getApplicationContext());
     }
 
     private void setTextView() {
@@ -84,45 +77,25 @@ public class ProductInfoActivity extends AppCompatActivity {
         Glide.with(this).load(url).into(imageView);
     }
 
-    private void initializeDB() {
-        db = UserDataBase.getInstance(getApplicationContext());
-        allergyDAO = db.getAllergyDAO();
-    }
-
     private void alertMyAllergy() {
-        Thread thread = new Thread() {
-            public void run() {
-                setMyAllergyList(allergyDAO.getAllergyList());
-            }
-        };
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         compareAllergy();
-        setAllertTextView();
-    }
-
-    private void setMyAllergyList(List<Allergy> myAllergyList) {
-        this.myAllergyList = myAllergyList;
+        setAlertTextView();
     }
 
     private void compareAllergy() {
-        for (Allergy allergy : myAllergyList) {
-            createAllertMessage(allergy.getAllergyName(), productAllergy);
+        for (Allergy allergy : User.userAllergyDatas) {
+            createAlertMessage(allergy.getAllergyName(), productAllergy);
         }
     }
 
-    private void createAllertMessage(String myAllergy, String productAllergy) {
+    private void createAlertMessage(String myAllergy, String productAllergy) {
         if (productAllergy.contains(myAllergy)) {
             alertMessage.append("'" + myAllergy + "' ");
             isContained = true;
         }
     }
 
-    private void setAllertTextView() {
+    private void setAlertTextView() {
         if (isContained) {
             alertAllergy.setText(alertMessage);
             alertAllergy.setTextSize(30);

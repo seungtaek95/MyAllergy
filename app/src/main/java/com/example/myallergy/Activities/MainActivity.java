@@ -46,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
             createHomeScreen(); //홈 화면 생성
         }
         else { //로그인이 되어있다면
-            initializeDB();
-            setUserAllergyDatas();
             createHomeScreen(); //홈 화면 생성
         }
-
+        initializeDB();
+        setUserAllergyDatas();
     }
 
     //홈화면, 네비게이션 바 생성

@@ -63,6 +63,7 @@ public class AllergySelectActivity extends AppCompatActivity {
 
     //알러지 정보를 db에서 가져와서 checkbox 설정
     public void isAllergyTableExist () {
+
         for(Allergy allergy : User.userAllergyDatas) {
             setCheckBoxStatus(allergy);
         }
