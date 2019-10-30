@@ -47,9 +47,10 @@ public class FragCommunity extends Fragment {
     }
 
     private void initializeView(View view) {
-        communityAdapter = new CommunityAdapter();
         imgBtn = view.findViewById(R.id.post_button);
-        listview = view.findViewById(R.id.container_post);
+
+        communityAdapter = new CommunityAdapter();
+        listview = view.findViewById(R.id.post_list_view);
         listview.setAdapter(communityAdapter);
 
         // 작성버튼 클릭
@@ -81,6 +82,7 @@ public class FragCommunity extends Fragment {
             public void onResponse(Call<List<PostVO>> call, Response<List<PostVO>> response) {
                 setCommunityList(response.body());
                 communityAdapter.setCommunityList(communityList);
+                communityAdapter.notifyDataSetChanged();
             }
             @Override
             public void onFailure(Call<List<PostVO>> call, Throwable t) {

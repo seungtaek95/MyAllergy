@@ -1,6 +1,7 @@
 package com.example.myallergy.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +45,12 @@ public class CommunityAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
-
         //뷰 초기화
         if(convertView == null) {
             mLayoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = mLayoutInflater.inflate(R.layout.item_community, viewGroup, false);
         }
         initializeViews(convertView);
-
         setTextCommunity(position);
 
         return convertView;

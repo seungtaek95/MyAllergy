@@ -1,6 +1,7 @@
 package com.example.myallergy.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class ProductSearchAdapter extends BaseAdapter {
     private TextView textView;
 
     public ProductSearchAdapter() {
+        Log.e("@@@@@@@@@@@@@@@", "product adapter constructor");
         productList = new ArrayList<>();
     }
 
@@ -39,7 +41,6 @@ public class ProductSearchAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
-
         //뷰 초기화
         if(convertView == null) {
             mLayoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -47,9 +48,9 @@ public class ProductSearchAdapter extends BaseAdapter {
         }
         initializeViews(convertView);
         if(getCount() == 0) {
-            createNoListView(context);
+            createNoListView();
         } else {
-            createLIstViewItem(position, context);
+            createLIstViewItem(position);
         }
 
         return convertView;
@@ -64,11 +65,11 @@ public class ProductSearchAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    private void createNoListView(final Context context) {
+    private void createNoListView() {
         textView.setText("검색결과가 없습니다");
     }
 
-    private void createLIstViewItem(final int position, final Context context) {
+    private void createLIstViewItem(final int position) {
         //상품 이름으로 textview 설정
         final String medicineName = productList.get(position).getPname();
         textView.setText(medicineName);
