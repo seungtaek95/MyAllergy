@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,7 +23,7 @@ public class MyMedicineActivity extends AppCompatActivity {
     private ListView listView;
     private LinearLayout layout;
     private MyMedicineAdapter medicineAdapter;
-    private TextView addMyMedicine;
+    private TextView addMyMedicine, tViewNoMedicine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,18 +75,24 @@ public class MyMedicineActivity extends AppCompatActivity {
                 //db에서 약 정보를 어댑터에 추가
                 List<Medicine> medicineList = medicineDAO.getMedicineList();
                 if (medicineList.isEmpty()) {
-                    createNoMedicineLayout();
+                    viewNoMedicineText();
                     return;
                 }
+                hideNoMedicineText();
                 medicineAdapter.updateMedicineList(medicineList);
             }
         }.start();
     }
 
-    private void createNoMedicineLayout() {
-        TextView textView = new TextView(getApplicationContext());
-        textView.setText("내 복용약 없음");
-        textView.setTextSize(30);
-        layout.addView(textView);
+    private void viewNoMedicineText() {
+        tViewNoMedicine = new TextView(getApplicationContext());
+        tViewNoMedicine.setText("내 복용약 없음");
+        tViewNoMedicine.setTextSize(30);
+        layout.addView(tViewNoMedicine);
+    }
+
+    private void hideNoMedicineText() {
+        if(tViewNoMedicine != null)
+            layout.setVisibility(View.INVISIBLE);
     }
 }
