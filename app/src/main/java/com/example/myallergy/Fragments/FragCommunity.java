@@ -1,15 +1,19 @@
 package com.example.myallergy.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
+import com.example.myallergy.Activities.CommunityPostForm;
+import com.example.myallergy.Adapter.CommunityAdapter;
 import com.example.myallergy.R;
-import com.example.myallergy.Retrofit2.CommunityVO;
+import com.example.myallergy.Retrofit2.PostVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 
 import java.util.List;
@@ -21,7 +25,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragCommunity extends Fragment {
-    TextView content;
+    private ListView listview;
+    private List<PostVO> communityList;
+    private ImageButton imgBtn;
+    private CommunityAdapter communityAdapter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,16 +42,27 @@ public class FragCommunity extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_community, container, false);
         initializeView(view);
-        getComminity();
-
+        getCommunity();
         return view;
     }
 
-
     private void initializeView(View view) {
-        content = view.findViewById(R.id.content);
+        communityAdapter = new CommunityAdapter();
+        imgBtn = view.findViewById(R.id.post_button);
+        listview = view.findViewById(R.id.container_post);
+        listview.setAdapter(communityAdapter);
+
+        // 작성버튼 클릭
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CommunityPostForm.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
 
     private WebEndPoint getEndPoint() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -54,18 +73,23 @@ public class FragCommunity extends Fragment {
         return endPoint;
     }
 
-    private void getComminity () {
+    private void getCommunity () {
         WebEndPoint endPoint = getEndPoint();
 
-        endPoint.searchCommunity("").enqueue(new Callback<List<CommunityVO>>() {
+        endPoint.searchCommunity().enqueue(new Callback<List<PostVO>>() {
             @Override
-            public void onResponse(Call<List<CommunityVO>> call, Response<List<CommunityVO>> response) {
-                List<CommunityVO> list = response.body();
-                content.setText(list.get(0).getContent());
+            public void onResponse(Call<List<PostVO>> call, Response<List<PostVO>> response) {
+                setCommunityList(response.body());
+                communityAdapter.setCommunityList(communityList);
             }
             @Override
-            public void onFailure(Call<List<CommunityVO>> call, Throwable t) {
+            public void onFailure(Call<List<PostVO>> call, Throwable t) {
             }
         });
     }
+
+    public void setCommunityList(List<PostVO> communityList) {
+        this.communityList = communityList;
+    }
+
 }

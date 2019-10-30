@@ -26,6 +26,6 @@ public interface WebEndPoint {
 
     //커뮤니티 url
     @GET("MyAllergy/community")
-    Call<List<CommunityVO>> searchCommunity(@Query("type") String type);
+    Call<List<PostVO>> searchCommunity();
 
 }

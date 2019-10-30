@@ -1,9 +1,18 @@
 package com.example.myallergy.Retrofit2;
 
 public class PostVO {
+    private String title;
     private String writer;
     private String content;
     private String date;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getWriter() {
         return writer;
