@@ -88,6 +88,7 @@ public class ProductSearchActivity extends AppCompatActivity {
         WebEndPoint endPoint = getEndPoint();
 
         if(pname == "") {
+            setProductList(null);
             return;
         }
         endPoint.searchProductName("pname", pname).enqueue(new Callback<List<ProductVO>>() {
