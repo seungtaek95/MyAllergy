@@ -1,3 +1,4 @@
+
 package com.example.myallergy.Activities;
 
 import android.content.Intent;
@@ -47,3 +48,4 @@ public class NaverLoginActivity extends AppCompatActivity {
         finishAffinity();
     }
 }
+

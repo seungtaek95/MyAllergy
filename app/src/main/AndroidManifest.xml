@@ -3,40 +3,44 @@
     package="com.example.myallergy">
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--키보드가 화면을 밀지 않게-->
-        <activity android:name=".Activities.MainActivity"
-                  android:windowSoftInputMode="adjustResize|adjustPan">
+        <activity android:name=".Activities.CommunityPostForm"></activity>
+        <!-- 키보드가 화면을 밀지 않게 -->
+        <activity
+            android:name=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.NaverLoginActivity"/>
-        <activity android:name=".Activities.AllergySelectActivity"/>
-        <activity android:name=".Activities.ProductSearchActivity"/>
-        <activity android:name=".Activities.ProductInfoActivity"/>
-        <activity android:name=".Activities.BarcodeScannerActivity"/>
-        <activity android:name=".Activities.MedicineInfoActivity"/>
-        <activity android:name=".Activities.MyMedicineActivity"/>
-        <activity android:name=".Activities.AlarmActivity"/>
-        <activity android:name=".Activities.MedicineSearchActivity"/>
+        <activity android:name=".Activities.NaverLoginActivity" />
+        <activity android:name=".Activities.AllergySelectActivity" />
+        <activity android:name=".Activities.ProductSearchActivity" />
+        <activity android:name=".Activities.ProductInfoActivity" />
+        <activity android:name=".Activities.BarcodeScannerActivity" />
+        <activity android:name=".Activities.MedicineInfoActivity" />
+        <activity android:name=".Activities.MyMedicineActivity" />
+        <activity android:name=".Activities.AlarmActivity" />
+        <activity android:name=".Activities.MedicineSearchActivity" />
 
-        <receiver android:name=".Receiver.DeviceBootReceiver" android:enabled="false">
+        <receiver
+            android:name=".Receiver.DeviceBootReceiver"
+            android:enabled="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Receiver.AlarmReceiver"/>
-
+        <receiver android:name=".Receiver.AlarmReceiver" />
     </application>
-    <!--인터넷 사용-->
+
     <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

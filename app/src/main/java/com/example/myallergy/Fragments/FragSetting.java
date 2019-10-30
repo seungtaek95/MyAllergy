@@ -91,6 +91,7 @@ public class FragSetting extends Fragment {
         return view;
     }
 
+
     public void initializeViews(View view) {
         //내 알러지 설정 버튼
         btnSetAllergy = view.findViewById(R.id.btn_setting_allergy);

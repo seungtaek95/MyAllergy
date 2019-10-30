@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.myallergy.Activities.BarcodeScannerActivity;
 import com.example.myallergy.Activities.ProductInfoActivity;
@@ -20,11 +19,8 @@ import com.example.myallergy.Activities.ProductSearchActivity;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.ProductVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
-import com.example.myallergy.SearchResultView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -104,7 +100,7 @@ public class FragHome extends Fragment {
         return endPoint;
     }
 
-    private void searchProduct (String barcode) {
+    private void searchProduct (final String barcode) {
         WebEndPoint endPoint = getEndPoint();
 
         endPoint.searchProductBarcode("barcode", barcode).enqueue(new Callback<ProductVO>() {
@@ -114,9 +110,11 @@ public class FragHome extends Fragment {
 
                 if (product.getPname() == null) {
                     Intent intent = new Intent(getContext(), ProductSearchActivity.class);
+                    intent.putExtra("type", "pname");
                     intent.putExtra("pname", "");
                     startActivity(intent);
                 } else {
+                    Log.e("barcode Num", barcode);
                     Intent intent = new Intent(getContext(), ProductInfoActivity.class);
                     intent.putExtra("product", product);
                     startActivity(intent);
