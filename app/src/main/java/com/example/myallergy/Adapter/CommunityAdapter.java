@@ -18,7 +18,7 @@ public class CommunityAdapter extends BaseAdapter {
     private List<PostVO> communityList;
     private TextView tViewWriter, tViewDate, tViewTitle;
 
-    public  CommunityAdapter(){
+    public CommunityAdapter(){
         communityList = new ArrayList<>();
     }
 
