@@ -1,7 +1,5 @@
 package com.example.myallergy.Retrofit2;
 
-import com.example.myallergy.SearchResultView;
-
 import java.util.List;
 
 import retrofit2.Call;

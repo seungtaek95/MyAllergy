@@ -134,7 +134,7 @@ public class CommunityPostForm extends AppCompatActivity {
                                 Toast toast = Toast.makeText(CommunityPostForm.this,"기능 사용을 위한 권한 동의가 필요합니다.",Toast.LENGTH_SHORT);
                                 toast.show();
                             }
-                        }
+                        }!!!
 
                         break;
                 }

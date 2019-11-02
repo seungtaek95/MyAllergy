@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,44 +8,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout_medicine_result"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/medicine_editText"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:hint="약을 검색해주세요." />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:gravity="center">
-            <EditText
-                android:id="@+id/medicine_editText"
-                android:layout_width="260dp"
+            android:background="@color/colorAccent">
+            <ImageButton
+                android:id="@+id/medicine_btn_search"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="40dp"
-                android:hint="약을 검색해주세요." />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent">
-                <ImageButton
-                    android:id="@+id/medicine_btn_search"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_search_white_24dp"
-                    android:imeOptions="actionSearch"
-                    android:background="?selectableItemBackground"/>
-            </LinearLayout>
+                android:src="@drawable/ic_search_white_24dp"
+                android:imeOptions="actionSearch"
+                android:background="?selectableItemBackground"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/medicine_layout_search_result"
-            android:layout_gravity="center">
-        </LinearLayout>
-
     </LinearLayout>
 
-</ScrollView>
+    <ListView
+        android:layout_marginTop="30dp"
+        android:id="@+id/medicine_search_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

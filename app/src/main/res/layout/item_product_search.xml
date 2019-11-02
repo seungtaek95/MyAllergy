@@ -2,11 +2,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
+    <ImageView
+        android:id="@+id/product_search_image"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/product_search_pname"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
+        android:layout_weight="3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="30dp"/>
+        android:textSize="25dp"/>
 </LinearLayout>
