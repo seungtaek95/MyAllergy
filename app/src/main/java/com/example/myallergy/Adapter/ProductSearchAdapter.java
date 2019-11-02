@@ -1,13 +1,19 @@
 package com.example.myallergy.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.myallergy.Activities.ProductInfoActivity;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.ProductVO;
 
@@ -16,62 +22,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProductSearchAdapter extends BaseAdapter {
-    private LayoutInflater mLayoutInflater;
-    private List<ProductVO> productList;
-    private TextView textView;
+public class ProductSearchAdapter extends RecyclerView.Adapter<ProductSearchAdapter.ViewHolder> {
+    List<ProductVO> productVOList;
 
-    public ProductSearchAdapter() {
-        Log.e("@@@@@@@@@@@@@@@", "product adapter constructor");
-        productList = new ArrayList<>();
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tViewPname;
+        private ImageView imageView;
 
-    @Override
-    public int getCount() {
-        return productList.size();
-    }
-    @Override
-    public ProductVO getItem(int position) {
-        return productList.get(position);
-    }
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-    @Override
-    public View getView(final int position, View convertView, ViewGroup viewGroup) {
-        final Context context = viewGroup.getContext();
-        //뷰 초기화
-        if(convertView == null) {
-            mLayoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = mLayoutInflater.inflate(R.layout.item_product_search, viewGroup, false);
+        ViewHolder(final View itemView) {
+            super(itemView);
+
+            imageView = itemView.findViewById(R.id.product_search_image);
+            tViewPname = itemView.findViewById(R.id.product_search_pname);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition() ;
+                    if (position != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(itemView.getContext(), ProductInfoActivity.class);
+                        intent.putExtra("product", productVOList.get(position));
+                        itemView.getContext().startActivity(intent);
+                    }
+                }
+            });
         }
-        initializeViews(convertView);
-        if(getCount() == 0) {
-            createNoListView();
-        } else {
-            createLIstViewItem(position);
-        }
-
-        return convertView;
     }
 
-    private void initializeViews(View view) {
-        textView = view.findViewById(R.id.product_search_pname);
+    public ProductSearchAdapter(List<ProductVO> productVOList) {
+        this.productVOList = productVOList;
     }
 
-    public void setProductList(List<ProductVO> productList) {
-        this.productList = productList;
-        notifyDataSetChanged();
+    @NonNull
+    @Override
+    public ProductSearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        Context context = viewGroup.getContext();
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View view = inflater.inflate(R.layout.item_product_search, viewGroup, false);
+        ProductSearchAdapter.ViewHolder viewHolder = new ProductSearchAdapter.ViewHolder(view);
+
+        return viewHolder;
     }
 
-    private void createNoListView() {
-        textView.setText("검색결과가 없습니다");
+    @Override
+    public void onBindViewHolder(@NonNull ProductSearchAdapter.ViewHolder viewHolder, int position) {
+        Glide.with(viewHolder.imageView.getContext()).load(productVOList.get(position).getImgurl1()).into(viewHolder.imageView);
+        viewHolder.tViewPname.setText(productVOList.get(position).getPname());
     }
 
-    private void createLIstViewItem(final int position) {
-        //상품 이름으로 textview 설정
-        final String medicineName = productList.get(position).getPname();
-        textView.setText(medicineName);
+    @Override
+    public int getItemCount() {
+        return productVOList.size();
     }
 }

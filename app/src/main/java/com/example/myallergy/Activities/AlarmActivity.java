@@ -32,7 +32,7 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
-        final TimePicker picker=(TimePicker)findViewById(R.id.timePicker);
+        final TimePicker picker = findViewById(R.id.timePicker);
         picker.setIs24HourView(true);
 
         // 앞서 설정한 값으로 보여주기
@@ -67,7 +67,7 @@ public class AlarmActivity extends AppCompatActivity {
         }
 
 
-        Button button = (Button) findViewById(R.id.button);
+        Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
