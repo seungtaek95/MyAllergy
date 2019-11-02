@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.myallergy.Activities.CommunityContentActivity;
 import com.example.myallergy.Activities.CommunityPostForm;
 import com.example.myallergy.Adapter.CommunityAdapter;
 import com.example.myallergy.R;
@@ -48,20 +50,11 @@ public class FragCommunity extends Fragment {
 
     private void initializeView(View view) {
         imgBtn = view.findViewById(R.id.post_button);
-
         communityAdapter = new CommunityAdapter();
         listview = view.findViewById(R.id.post_list_view);
         listview.setAdapter(communityAdapter);
-
-        // 작성버튼 클릭
-        imgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CommunityPostForm.class);
-                startActivity(intent);
-            }
-        });
-
+        Intent intent1 = getActivity().getIntent();
+        setClickListener();
     }
 
 
@@ -93,4 +86,23 @@ public class FragCommunity extends Fragment {
         this.communityList = communityList;
     }
 
+    private void setClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), CommunityContentActivity.class);
+                intent.putExtra("community", communityList.get(position));
+                startActivity(intent);
+            }
+        });
+
+        // 작성버튼 클릭
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CommunityPostForm.class);
+                startActivity(intent);
+            }
+        });
+    }
 }

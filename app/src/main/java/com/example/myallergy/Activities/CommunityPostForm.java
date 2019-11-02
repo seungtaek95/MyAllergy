@@ -1,35 +1,29 @@
 package com.example.myallergy.Activities;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.example.myallergy.Fragments.FragCommunity;
 import com.example.myallergy.R;
+import com.example.myallergy.Retrofit2.PostVO;
+import com.example.myallergy.Retrofit2.WebEndPoint;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CommunityPostForm extends AppCompatActivity {
 
@@ -37,11 +31,12 @@ public class CommunityPostForm extends AppCompatActivity {
     private final int REQUEST_PERMISSION_CODE = 2222;
     private final int GALLERY_CODE = 1112;
     private Uri photoUri;
-    private String currentPhotoPath;
-    String imageName;
-    ImageView ivImage;
-    ImageButton btnCamera, btnGallery;
-
+    private String currentPhotoPath, imageName, currentDate;
+    private ImageView ivImage;
+    private ImageButton btnCamera, btnGallery;
+    private EditText title, content;
+    private PostVO post;
+    private Button btnComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +47,44 @@ public class CommunityPostForm extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        Intent intent = new Intent(this.getIntent());
-        btnCamera = (ImageButton) findViewById(R.id.form_camera);
+        Intent intent = getIntent();
+        Date date = new Date();
+        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat timeForm = new SimpleDateFormat("hh:mm:ss");
+        currentDate = dateForm.format(date)+" "+timeForm.format(date);
+        title = findViewById(R.id.form_title);
+        content = findViewById(R.id.form_content);
+        btnComplete = findViewById(R.id.form_complete);
+        post = new PostVO();
+
+        buttonClickListener();
+    }
+
+    private void buttonClickListener() {
+        btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WebEndPoint endPoint = getEndPoint();
+
+                endPoint.sendCommunity(post).enqueue(new Callback<PostVO>() {
+                    @Override
+                    public void onResponse(Call<PostVO> call, Response<PostVO> response) {
+                        addText();
+                        Log.e("@@@@@@@@@@@@@@@",response.body().getContent());
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostVO> call, Throwable t) {
+
+                    }
+                });
+
+                Intent intent1 = new Intent(getApplicationContext(), FragCommunity.class);
+                startActivity(intent1);
+            }
+
+        });
+        /*        btnCamera = (ImageButton) findViewById(R.id.form_camera);
         btnGallery = (ImageButton) findViewById(R.id.form_gallery);
         ivImage = findViewById(R.id.form_image);
         btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -103,18 +134,19 @@ public class CommunityPostForm extends AppCompatActivity {
                                 Toast toast = Toast.makeText(CommunityPostForm.this,"기능 사용을 위한 권한 동의가 필요합니다.",Toast.LENGTH_SHORT);
                                 toast.show();
                             }
-                        }
+                        }!!!
 
                         break;
                 }
             }
-        });
+        });*/
     }
-
+    // 접근요청
+/*
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_PERMISSION_CODE);
     }
-
+    // 갤러리 사진 선택
     private void selectPhoto() {
         String state = Environment.getExternalStorageState();
         if(Environment.MEDIA_MOUNTED.equals(state)){
@@ -163,7 +195,7 @@ public class CommunityPostForm extends AppCompatActivity {
 
         return resizeBitmap;
     }
-
+    // 카메라로 찍은 사진파일 생
     private File createImageFile() throws IOException {
         File dir = new File(Environment.getExternalStorageDirectory()+"/path/");
         if(!dir.exists()){
@@ -177,7 +209,7 @@ public class CommunityPostForm extends AppCompatActivity {
 
         return storageDir;
     }
-
+    // 사진을 이미지로 가져오
     private void getPictureForPhoto() {
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
         ExifInterface exif = null;
@@ -198,7 +230,7 @@ public class CommunityPostForm extends AppCompatActivity {
         }
         ivImage.setImageBitmap(rotate(bitmap,exifDegree)); // 이미지 뷰에 비트맵
     }
-
+    // 갤러리 선택
     private void selectGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
@@ -284,4 +316,21 @@ public class CommunityPostForm extends AppCompatActivity {
                 break;
         }
     }
+ */
+
+    private WebEndPoint getEndPoint() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(WebEndPoint.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WebEndPoint endPoint = retrofit.create(WebEndPoint.class);
+        return endPoint;
+    }
+
+    private void addText() {
+        post.setTitle(title.getText().toString());
+        //post.setDate(currentDate);
+        post.setContent(content.getText().toString());
+    }
+
 }

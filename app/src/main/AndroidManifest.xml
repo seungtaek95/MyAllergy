@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CommunityPostForm"></activity>
-        <!-- 키보드가 화면을 밀지 않게 -->
+        <activity android:name=".Activities.CommunityContentActivity"></activity>
+        <activity android:name=".Activities.CommunityPostForm" /> <!-- 키보드가 화면을 밀지 않게 -->
         <activity
             android:name=".Activities.MainActivity"
             android:windowSoftInputMode="adjustResize|adjustPan">
