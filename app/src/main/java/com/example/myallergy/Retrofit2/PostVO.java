@@ -1,6 +1,8 @@
 package com.example.myallergy.Retrofit2;
 
-public class PostVO {
+import java.io.Serializable;
+
+public class PostVO implements Serializable {
     private String title;
     private String writer;
     private String content;

@@ -3,7 +3,10 @@ package com.example.myallergy.Retrofit2;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface WebEndPoint {
@@ -27,5 +30,9 @@ public interface WebEndPoint {
     //커뮤니티 url
     @GET("MyAllergy/community")
     Call<List<PostVO>> searchCommunity();
+
+    @Multipart
+    @POST("MyAllergy/community")
+    Call<PostVO> sendCommunity(@Body PostVO post);
 
 }
