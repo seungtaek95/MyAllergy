@@ -53,7 +53,7 @@ public class FragCommunity extends Fragment {
         communityAdapter = new CommunityAdapter();
         listview = view.findViewById(R.id.post_list_view);
         listview.setAdapter(communityAdapter);
-
+        Intent intent1 = getActivity().getIntent();
         setClickListener();
     }
 

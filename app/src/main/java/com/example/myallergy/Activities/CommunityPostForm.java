@@ -44,11 +44,10 @@ public class CommunityPostForm extends AppCompatActivity {
         setContentView(R.layout.activity_community_post_form);
 
         initializeViews();
-        addText();
     }
 
     private void initializeViews() {
-        Intent intent = this.getIntent();
+        Intent intent = getIntent();
         Date date = new Date();
         SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
         SimpleDateFormat timeForm = new SimpleDateFormat("hh:mm:ss");
@@ -70,6 +69,7 @@ public class CommunityPostForm extends AppCompatActivity {
                 endPoint.sendCommunity(post).enqueue(new Callback<PostVO>() {
                     @Override
                     public void onResponse(Call<PostVO> call, Response<PostVO> response) {
+                        addText();
                         Log.e("@@@@@@@@@@@@@@@",response.body().getContent());
                     }
 
