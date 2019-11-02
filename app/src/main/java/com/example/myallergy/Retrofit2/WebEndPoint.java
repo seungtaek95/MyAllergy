@@ -31,7 +31,6 @@ public interface WebEndPoint {
     @GET("MyAllergy/community")
     Call<List<PostVO>> searchCommunity();
 
-    @Multipart
     @POST("MyAllergy/community")
     Call<PostVO> sendCommunity(@Body PostVO post);
 

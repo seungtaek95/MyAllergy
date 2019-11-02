@@ -44,8 +44,13 @@ public class FragCommunity extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_community, container, false);
         initializeView(view);
-        getCommunity();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCommunity();
     }
 
     private void initializeView(View view) {
@@ -53,7 +58,6 @@ public class FragCommunity extends Fragment {
         communityAdapter = new CommunityAdapter();
         listview = view.findViewById(R.id.post_list_view);
         listview.setAdapter(communityAdapter);
-        Intent intent1 = getActivity().getIntent();
         setClickListener();
     }
 

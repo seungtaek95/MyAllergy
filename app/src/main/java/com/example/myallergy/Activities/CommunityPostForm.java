@@ -35,7 +35,7 @@ public class CommunityPostForm extends AppCompatActivity {
     private ImageView ivImage;
     private ImageButton btnCamera, btnGallery;
     private EditText title, content;
-    private PostVO post;
+    private PostVO postVO;
     private Button btnComplete;
 
     @Override
@@ -47,40 +47,40 @@ public class CommunityPostForm extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        Intent intent = getIntent();
-        Date date = new Date();
-        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
-        SimpleDateFormat timeForm = new SimpleDateFormat("hh:mm:ss");
-        currentDate = dateForm.format(date)+" "+timeForm.format(date);
         title = findViewById(R.id.form_title);
         content = findViewById(R.id.form_content);
         btnComplete = findViewById(R.id.form_complete);
-        post = new PostVO();
+        postVO = new PostVO();
 
         buttonClickListener();
     }
 
+    //작성완료 눌렀을 때 editText의 글자들을 전송할 postVO의 필드값을 set해줌 (writer는 임의로)
+    private void setPostVO() {
+        postVO.setTitle(title.getText().toString());
+        postVO.setContent(content.getText().toString());
+        postVO.setWriter("승택커");
+    }
+
     private void buttonClickListener() {
+
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebEndPoint endPoint = getEndPoint();
+                //전송할 postVO객체의 필드값 set
+                setPostVO();
 
-                endPoint.sendCommunity(post).enqueue(new Callback<PostVO>() {
+                //서버로 postVO객체를 post해쥼. 응답이 오는건 없어서 onResponse는 작성할게없음. 서버에서는 postVO객체를 받아서 이렇게저렇게 해서 디비에 넣어줌
+                WebEndPoint endPoint = getEndPoint();
+                endPoint.sendCommunity(postVO).enqueue(new Callback<PostVO>() {
                     @Override
                     public void onResponse(Call<PostVO> call, Response<PostVO> response) {
-                        addText();
-                        Log.e("@@@@@@@@@@@@@@@",response.body().getContent());
                     }
-
                     @Override
                     public void onFailure(Call<PostVO> call, Throwable t) {
-
                     }
                 });
-
-                Intent intent1 = new Intent(getApplicationContext(), FragCommunity.class);
-                startActivity(intent1);
+                finish(); //액티비티 종료 -> 추가된 postVO확인
             }
 
         });
@@ -325,12 +325,6 @@ public class CommunityPostForm extends AppCompatActivity {
                 .build();
         WebEndPoint endPoint = retrofit.create(WebEndPoint.class);
         return endPoint;
-    }
-
-    private void addText() {
-        post.setTitle(title.getText().toString());
-        //post.setDate(currentDate);
-        post.setContent(content.getText().toString());
     }
 
 }
