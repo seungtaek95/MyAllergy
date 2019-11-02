@@ -37,7 +37,8 @@
         android:id="@+id/product_search_no_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="invisible">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
