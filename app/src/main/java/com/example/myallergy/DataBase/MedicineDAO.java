@@ -15,6 +15,9 @@ public interface MedicineDAO {
     @Delete
     public void deleteMedicine(Medicine... medicine);
 
+    @Query("DELETE FROM medicine")
+    public void deleteAllMedicine();
+
     @Query("SELECT * FROM medicine")
     public List<Medicine> getMedicineList();
 }

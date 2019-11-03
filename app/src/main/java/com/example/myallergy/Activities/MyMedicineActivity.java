@@ -1,5 +1,6 @@
 package com.example.myallergy.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,17 +19,19 @@ import com.example.myallergy.R;
 import java.util.List;
 
 public class MyMedicineActivity extends AppCompatActivity {
+    public static Context mContext;
     private UserDataBase db;
     private MedicineDAO medicineDAO;
     private ListView listView;
     private LinearLayout layout;
     private MyMedicineAdapter medicineAdapter;
-    private TextView addMyMedicine, tViewNoMedicine;
+    private TextView addMyMedicine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_medicine);
+        mContext = this;
 
         initializeDB();
         initializeView();
@@ -40,7 +43,14 @@ public class MyMedicineActivity extends AppCompatActivity {
         //db에서 내 복용약 정보를 가져와서 어댑터에 추가
         getMyMedicineToAdapter();
         //리스트뷰에 어댑터 설정
-        setListView(medicineAdapter);
+        listView.setAdapter(medicineAdapter);
+    }
+
+    public static Context getmContext() {
+        if (mContext == null) {
+            mContext = new MyMedicineActivity();
+        }
+        return mContext;
     }
 
     private void initializeDB () {
@@ -65,34 +75,33 @@ public class MyMedicineActivity extends AppCompatActivity {
         });
     }
 
-    private void setListView(MyMedicineAdapter medicineAdapter) {
-        listView.setAdapter(medicineAdapter);
-    }
-
     private void getMyMedicineToAdapter () {
-        new Thread() {
+        Thread thread = new Thread(new Runnable() {
             public void run() {
                 //db에서 약 정보를 어댑터에 추가
                 List<Medicine> medicineList = medicineDAO.getMedicineList();
-                if (medicineList.isEmpty()) {
-                    viewNoMedicineText();
-                    return;
-                }
-                hideNoMedicineText();
                 medicineAdapter.updateMedicineList(medicineList);
             }
-        }.start();
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        medicineAdapter.notifyDataSetChanged();
+        if (medicineAdapter.isEmpty()) {
+            viewNoMedicineText();
+        } else {
+            hideNoMedicineText();
+        }
     }
 
-    private void viewNoMedicineText() {
-        tViewNoMedicine = new TextView(getApplicationContext());
-        tViewNoMedicine.setText("내 복용약 없음");
-        tViewNoMedicine.setTextSize(30);
-        layout.addView(tViewNoMedicine);
+    public void viewNoMedicineText() {
+        layout.setVisibility(View.VISIBLE);
     }
 
     private void hideNoMedicineText() {
-        if(tViewNoMedicine != null)
-            layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.INVISIBLE);
     }
 }

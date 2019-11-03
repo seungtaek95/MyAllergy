@@ -11,18 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.myallergy.Activities.AllergySelectActivity;
 import com.example.myallergy.Activities.MainActivity;
 import com.example.myallergy.Activities.MyMedicineActivity;
+import com.example.myallergy.DataBase.Allergy;
 import com.example.myallergy.DataBase.AllergyDAO;
+import com.example.myallergy.DataBase.MedicineDAO;
+import com.example.myallergy.DataBase.UserDAO;
 import com.example.myallergy.DataBase.UserDataBase;
+import com.example.myallergy.DataBase.UserProfile;
 import com.example.myallergy.R;
 import com.nhn.android.naverlogin.OAuthLogin;
+
+import java.util.ArrayList;
 
 public class FragSetting extends Fragment {
     LinearLayout btnSetAllergy, btnSetMedicine;
     Button btnLogout;
+    TextView tViewName;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +105,9 @@ public class FragSetting extends Fragment {
         btnSetAllergy = view.findViewById(R.id.btn_setting_allergy);
         //내 복용약 설정 버튼
         btnSetMedicine = view.findViewById(R.id.btn_setting_medicine);
+        //사용자 닉네임
+        tViewName = view.findViewById(R.id.tView_setting_name);
+        tViewName.setText(UserProfile.userName);
         //로그아웃 버튼
         btnLogout = view.findViewById(R.id.btn_logout);
     }
@@ -106,10 +117,17 @@ public class FragSetting extends Fragment {
         OAuthLogin mOAuthLogin = OAuthLogin.getInstance();
         mOAuthLogin.logoutAndDeleteToken(getContext());
 
+        UserProfile.userName = new String();
+        UserProfile.userAllergyDatas = new ArrayList<>();
+
         //db 데이터 초기화
         UserDataBase db = UserDataBase.getInstance(getContext());
-        AllergyDAO userDAO = db.getAllergyDAO();
-        userDAO.deleteAllergy();
+        AllergyDAO allergyDAO = db.getAllergyDAO();
+        allergyDAO.deleteAllergy();
+        MedicineDAO medicineDAO = db.getMedicineDAO();
+        medicineDAO.deleteAllMedicine();
+        UserDAO userDAO = db.getUserDAO();
+        userDAO.deleteUser();
     }
 
     public void resetActivity() {

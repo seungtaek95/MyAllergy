@@ -1,29 +1,17 @@
 package com.example.myallergy.Activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myallergy.DataBase.Allergy;
-import com.example.myallergy.DataBase.AllergyDAO;
-import com.example.myallergy.DataBase.Medicine;
-import com.example.myallergy.DataBase.MedicineDAO;
-import com.example.myallergy.DataBase.User;
-import com.example.myallergy.DataBase.UserDataBase;
+import com.example.myallergy.DataBase.UserProfile;
 import com.example.myallergy.R;
-import com.example.myallergy.Retrofit2.MedicineVO;
 import com.example.myallergy.Retrofit2.ProductVO;
-
-import java.util.List;
 
 
 public class ProductInfoActivity extends AppCompatActivity {
@@ -83,7 +71,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     }
 
     private void compareAllergy() {
-        for (Allergy allergy : User.userAllergyDatas) {
+        for (Allergy allergy : UserProfile.userAllergyDatas) {
             createAlertMessage(allergy.getAllergyName(), productAllergy);
         }
     }

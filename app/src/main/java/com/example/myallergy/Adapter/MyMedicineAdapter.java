@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myallergy.Activities.AlarmActivity;
+import com.example.myallergy.Activities.MyMedicineActivity;
 import com.example.myallergy.DataBase.Medicine;
 import com.example.myallergy.DataBase.MedicineDAO;
 import com.example.myallergy.DataBase.UserDataBase;
@@ -30,6 +32,11 @@ public class MyMedicineAdapter extends BaseAdapter {
 
     public MyMedicineAdapter() {
         medicineList = new ArrayList<>();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return super.isEmpty();
     }
 
     @Override
@@ -54,11 +61,7 @@ public class MyMedicineAdapter extends BaseAdapter {
             convertView = mLayoutInflater.inflate(R.layout.item_my_medicine, viewGroup, false);
         }
         initializeViews(convertView);
-        if(getCount() == 0) {
-            createNoListView();
-        } else {
-            createLIstViewItem(position, context);
-        }
+        createLIstViewItem(position, context);
 
         return convertView;
     }
@@ -67,11 +70,6 @@ public class MyMedicineAdapter extends BaseAdapter {
         textView = view.findViewById(R.id.my_medicine_name);
         btnAlarm = view.findViewById(R.id.btn_my_medicine_setAlarm);
         btnDelete = view.findViewById(R.id.btn_my_medicine_delete);
-    }
-
-    private void createNoListView() {
-        textView.setText("내 복용약이 없습니다");
-        textView.setClickable(false);
     }
 
     private void createLIstViewItem(final int position, final Context context) {
@@ -84,7 +82,6 @@ public class MyMedicineAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 alertDialogHandler(context, position);
-                notifyDataSetChanged();
             }
         });
 
@@ -107,10 +104,8 @@ public class MyMedicineAdapter extends BaseAdapter {
                 .setPositiveButton("예", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        UserDataBase db = UserDataBase.getInstance(context);
-                        MedicineDAO medicineDAO = db.getMedicineDAO();
                         //db에서 해당 약 삭제
-                        deleteThisMedicine(medicineDAO, medicineList.get(position));
+                        deleteThisMedicine(context, medicineList.get(position));
                     }
                 })
                 .setNegativeButton("아니오", null)
@@ -121,7 +116,10 @@ public class MyMedicineAdapter extends BaseAdapter {
         this.medicineList = medicineList;
     }
 
-    private void deleteThisMedicine(final MedicineDAO medicineDAO, final Medicine medicine) {
+    private void deleteThisMedicine(Context context, final Medicine medicine) {
+        UserDataBase db = UserDataBase.getInstance(context);
+        final MedicineDAO medicineDAO = db.getMedicineDAO();
+
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 //db에서 삭제하고 리스트 새로 받아옴
@@ -136,5 +134,10 @@ public class MyMedicineAdapter extends BaseAdapter {
             e.printStackTrace();
         }
         notifyDataSetChanged();
+
+        //내 복용약이 없으면 복용약 없음 텍스트 출력
+        if (medicineList.size() == 0) {
+            ((MyMedicineActivity)MyMedicineActivity.getmContext()).viewNoMedicineText();
+        }
     }
 }

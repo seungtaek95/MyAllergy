@@ -10,8 +10,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.myallergy.DataBase.AllergyDAO;
-import com.example.myallergy.DataBase.User;
+import com.example.myallergy.DataBase.UserDAO;
 import com.example.myallergy.DataBase.UserDataBase;
+import com.example.myallergy.DataBase.UserProfile;
 import com.example.myallergy.Fragments.FragCommunity;
 import com.example.myallergy.Fragments.FragHome;
 import com.example.myallergy.Fragments.FragCategory;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     String token;
 
     private AllergyDAO allergyDAO;
+    private UserDAO userDAO;
     private UserDataBase userDataBase;
 
     BottomNavigationView bottomNavigationView;
@@ -125,14 +127,18 @@ public class MainActivity extends AppCompatActivity {
     //database, dao 초기화
     private void initializeDB() {
         userDataBase = UserDataBase.getInstance(getApplicationContext());
+        userDAO = userDataBase.getUserDAO();
         allergyDAO = userDataBase.getAllergyDAO();
     }
 
-    //알러지 정보를 db에서 가져와서 user allergydata로 설정
+    //알러지 정보, 닉네임을 db에서 가져와서 userprofile 설정
     private void setUserAllergyDatas () {
         new Thread() {
             public void run() {
-                User.userAllergyDatas = allergyDAO.getAllergyList();
+                UserProfile.userAllergyDatas = allergyDAO.getAllergyList();
+                if (userDAO.getUser() != null) {
+                    UserProfile.userName = userDAO.getUser().getUserName();
+                }
             }
         }.start();
     }

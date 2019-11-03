@@ -16,10 +16,7 @@
         android:layout_marginBottom="10dp"/>
     <ListView
         android:layout_below="@+id/community_text"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:id="@+id/post_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -8,8 +8,8 @@ import android.widget.CheckBox;
 
 import com.example.myallergy.DataBase.Allergy;
 import com.example.myallergy.DataBase.AllergyDAO;
-import com.example.myallergy.DataBase.User;
 import com.example.myallergy.DataBase.UserDataBase;
+import com.example.myallergy.DataBase.UserProfile;
 import com.example.myallergy.R;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class AllergySelectActivity extends AppCompatActivity {
     //알러지 정보를 db에서 가져와서 checkbox 설정
     public void isAllergyTableExist () {
 
-        for(Allergy allergy : User.userAllergyDatas) {
+        for(Allergy allergy : UserProfile.userAllergyDatas) {
             setCheckBoxStatus(allergy);
         }
     }
@@ -93,7 +93,7 @@ public class AllergySelectActivity extends AppCompatActivity {
                         allergyDAO.insert(tempAllergy);
                     }
                 }
-                User.userAllergyDatas = allergyDAO.getAllergyList();
+                UserProfile.userAllergyDatas = allergyDAO.getAllergyList();
             }
         }.start();
     }

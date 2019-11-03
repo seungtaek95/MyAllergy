@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.myallergy.DataBase.UserProfile;
 import com.example.myallergy.Fragments.FragCommunity;
 import com.example.myallergy.R;
 import com.example.myallergy.Retrofit2.PostVO;
@@ -55,11 +56,11 @@ public class CommunityPostForm extends AppCompatActivity {
         buttonClickListener();
     }
 
-    //작성완료 눌렀을 때 editText의 글자들을 전송할 postVO의 필드값을 set해줌 (writer는 임의로)
+    //작성완료 눌렀을 때 editText의 글자들을 전송할 postVO의 필드값을 set해줌
     private void setPostVO() {
         postVO.setTitle(title.getText().toString());
         postVO.setContent(content.getText().toString());
-        postVO.setWriter("승택커");
+        postVO.setWriter(UserProfile.userName);
     }
 
     private void buttonClickListener() {

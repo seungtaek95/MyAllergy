@@ -1,10 +1,10 @@
 package com.example.myallergy.DataBase;
 
-        import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Entity;
         import android.arch.persistence.room.PrimaryKey;
         import android.support.annotation.NonNull;
 
-//user 테이블, 컬럼=알러지이름, 아이디값
+//medicine 테이블, 컬럼=알러지이름, 아이디값
 @Entity(tableName = "medicine")
 public class Medicine {
     @PrimaryKey
