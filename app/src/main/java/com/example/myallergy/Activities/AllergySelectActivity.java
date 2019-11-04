@@ -33,8 +33,7 @@ public class AllergySelectActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.allergy_submit);
 
         //database, dao 초기화
-        db = UserDataBase.getInstance(getApplicationContext());
-        allergyDAO = db.getAllergyDAO();
+        initializeDB();
 
         //이전에 설정된 알러지 정보가 있으면 체크박스 체크 설정
         isAllergyTableExist();
@@ -49,7 +48,12 @@ public class AllergySelectActivity extends AppCompatActivity {
         });
     }
 
-    public void initializeCheckBoxes () {
+    private void initializeDB() {
+        db = UserDataBase.getInstance(getApplicationContext());
+        allergyDAO = db.getAllergyDAO();
+    }
+
+    private void initializeCheckBoxes () {
         //ceckbox를 담을 lsit
         checkBoxList = new ArrayList<>();
 
