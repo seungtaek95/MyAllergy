@@ -11,13 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.CommunityContentActivity"></activity>
-        <activity android:name=".Activities.CommunityPostForm" /> <!-- 키보드가 화면을 밀지 않게 -->
+        <activity android:name=".Activities.CommunityPostForm"
+            android:windowSoftInputMode="adjustPan"/>
+        <!-- 키보드가 화면을 밀지 않게 -->
         <activity
             android:name=".Activities.MainActivity"
-            android:windowSoftInputMode="adjustResize|adjustPan">
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,7 +30,8 @@
         <activity android:name=".Activities.MedicineInfoActivity" />
         <activity android:name=".Activities.MyMedicineActivity" />
         <activity android:name=".Activities.AlarmActivity" />
-        <activity android:name=".Activities.MedicineSearchActivity" />
+        <activity android:name=".Activities.MedicineSearchActivity"
+            android:windowSoftInputMode="stateVisible"/>
         <activity android:name=".Activities.CreateUserNameActivity"/>
 
         <receiver
