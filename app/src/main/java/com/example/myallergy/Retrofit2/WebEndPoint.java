@@ -34,4 +34,7 @@ public interface WebEndPoint {
     @POST("MyAllergy/community")
     Call<PostVO> sendCommunity(@Body PostVO post);
 
+    //유저 닉네임 중복 검사 url
+    @GET("MyAllergy/user")
+    Call<Void> checkNickname(@Query("nickname") String nickname);
 }
