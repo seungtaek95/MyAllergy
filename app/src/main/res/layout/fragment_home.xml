@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#efefef">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:background="@color/white"
         android:gravity="center"
         android:padding="20dp">
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="432dp"
@@ -22,33 +22,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:background="@color/white"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-        <EditText
-            android:id="@+id/eText_search_product"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:hint="상품을 검색해주세요."
-            android:layout_marginLeft="40dp"/>
+            <EditText
+                android:id="@+id/eText_search_product"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:hint="상품을 검색해주세요."
+                android:layout_marginLeft="40dp"/>
 
-        <ImageButton
-            android:id="@+id/imageButton_search_product"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#FF8184"
-            android:src="@drawable/ic_search_white_24dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp">
+            <ImageButton
+                android:id="@+id/imageButton_search_product"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#FF8184"
+                android:src="@drawable/ic_search_white_24dp" />
+        </LinearLayout>
 
         <Button
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:id="@+id/barcode_btn"
             android:layout_width="260dp"
             android:layout_height="50dp"
@@ -57,21 +58,73 @@
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="22dp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
-
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="@color/white">
         <TextView
+            android:paddingTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:text="오늘의 인기글"
-            android:textSize="25dp" />
+            android:text="최근에 올라온 글"
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+        <LinearLayout
+            android:id="@+id/home_latest_post"
+            android:layout_margin="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:elevation="5dp">
+            <TextView
+                android:id="@+id/home_post_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_margin="10dp"
+                android:text="제목"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/home_post_writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:text="작성자"
+                android:textSize="15dp"/>
+            <TextView
+                android:id="@+id/home_post_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:text="날짜"
+                android:textSize="15dp"/>
+            <View
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:background="#aaaaaa"/>
+            <TextView
+                android:id="@+id/home_post_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:scrollbars="vertical"
+                android:layout_margin="20dp"
+                android:textSize="20dp"
+                android:text="내용"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -61,7 +61,6 @@ public class FragCommunity extends Fragment {
         setClickListener();
     }
 
-
     private WebEndPoint getEndPoint() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(WebEndPoint.URL)

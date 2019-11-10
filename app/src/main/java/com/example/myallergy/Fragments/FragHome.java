@@ -12,15 +12,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.myallergy.Activities.BarcodeScannerActivity;
+import com.example.myallergy.Activities.CommunityContentActivity;
 import com.example.myallergy.Activities.ProductInfoActivity;
 import com.example.myallergy.Activities.ProductSearchActivity;
 import com.example.myallergy.R;
+import com.example.myallergy.Retrofit2.PostVO;
 import com.example.myallergy.Retrofit2.ProductVO;
 import com.example.myallergy.Retrofit2.WebEndPoint;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,9 +35,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragHome extends Fragment {
+    private PostVO latestPost;
     private EditText eTextSearch;
     private ImageButton imageButtonSearch;
     private Button btnBarcode;
+    private TextView title, writer, date, content;
+    private LinearLayout layoutPost;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +55,7 @@ public class FragHome extends Fragment {
 
         initializeViews(view);
         setButtonClickListener();
+        getCommunity();
 
         return view;
     }
@@ -54,6 +64,11 @@ public class FragHome extends Fragment {
         eTextSearch = view.findViewById(R.id.eText_search_product);
         imageButtonSearch = view.findViewById(R.id.imageButton_search_product);
         btnBarcode= view.findViewById(R.id.barcode_btn);
+        title = view.findViewById(R.id.home_post_title);
+        writer = view.findViewById(R.id.home_post_writer);
+        date = view.findViewById(R.id.home_post_date);
+        content = view.findViewById(R.id.home_post_content);
+        layoutPost = view.findViewById(R.id.home_latest_post);
     }
 
     private void setButtonClickListener() {
@@ -74,6 +89,15 @@ public class FragHome extends Fragment {
                 IntentIntegrator integrator = IntentIntegrator.forSupportFragment(FragHome.this);
                 integrator.setCaptureActivity(BarcodeScannerActivity.class);
                 integrator.initiateScan();
+            }
+        });
+        //최근 글 클릭시
+        layoutPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CommunityContentActivity.class);
+                intent.putExtra("community", latestPost);
+                startActivity(intent);
             }
         });
     }
@@ -124,5 +148,31 @@ public class FragHome extends Fragment {
             public void onFailure(Call<ProductVO> call, Throwable t) {
             }
         });
+    }
+
+    private void getCommunity () {
+        WebEndPoint endPoint = getEndPoint();
+
+        endPoint.searchCommunity().enqueue(new Callback<List<PostVO>>() {
+            @Override
+            public void onResponse(Call<List<PostVO>> call, Response<List<PostVO>> response) {
+                setLatestPost(response.body().get(0));
+                setLatestPostView();
+            }
+            @Override
+            public void onFailure(Call<List<PostVO>> call, Throwable t) {
+            }
+        });
+    }
+
+    public void setLatestPost(PostVO latestPost) {
+        this.latestPost = latestPost;
+    }
+
+    private void setLatestPostView() {
+        title.setText(latestPost.getTitle());
+        writer.setText(latestPost.getWriter());
+        date.setText(latestPost.getDate());
+        content.setText(latestPost.getContent());
     }
 }
